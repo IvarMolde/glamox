@@ -7,26 +7,25 @@ const routes = {
 };
 
 export function handleRouteChange() {
-  // Fjern leading slash fra hash: "#/tema/1" -> "tema/1"
-  const normalized = window.location.hash.replace(/^#\/?/, ""); 
+  const raw = window.location.hash.slice(1); // f.eks. "/tema/1" eller ""
+  const cleaned = raw.replace(/^\/+/, "");   // "tema/1" eller ""
+  const [path, ...params] = cleaned.split("/");
 
-  let matched = false;
-  for (const pattern in routes) {
-    const regex = new RegExp(`^${pattern}$`);
-    const m = normalized.match(regex);
-    if (m) {
-      // m[1], m[2], ... er captured params (f.eks. topicId)
-      routes[pattern](...m.slice(1));
-      matched = true;
+  let found = false;
+  for (const route in routes) {
+    const regex = new RegExp(`^${route}$`);
+    if (regex.test(path)) {
+      routes[route](...params);
+      found = true;
       break;
     }
   }
 
-  if (!matched) {
+  if (!found) {
     renderHome();
   }
 
-  updateActiveLink();
+  updateActiveLink("#/" + cleaned);
 }
 
 export function setupRouter(routeHandler) {
@@ -39,3 +38,4 @@ function updateActiveLink() {
     link.classList.toggle("active", link.getAttribute("href") === currentHash);
   });
 }
+
