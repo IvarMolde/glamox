@@ -32,10 +32,14 @@ export function setupRouter(routeHandler) {
   window.addEventListener("hashchange", routeHandler);
 }
 
-function updateActiveLink() {
-  const currentHash = window.location.hash || "#/"; // inkluder '#'
-  document.querySelectorAll(".nav-link").forEach((link) => {
-    link.classList.toggle("active", link.getAttribute("href") === currentHash);
+function updateActiveLink(hash) {
+  const links = document.querySelectorAll(".nav-link");
+  links.forEach((link) => {
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+    if (link.getAttribute("href") === hash) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
   });
 }
-
