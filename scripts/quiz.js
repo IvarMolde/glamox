@@ -1,19 +1,29 @@
+// scripts/quiz.js
 import { saveUserProgress, getUserProgress } from "./storage.js";
 
-// En liten helper for å hente elementer
+// Helper: hent element
 const el = (id) => document.getElementById(id);
-// Ren prosent uten NaN
+// Helper: prosent uten NaN
 const pct = (num, den) => (den > 0 ? (num / den) * 100 : 0);
 
 /* =========================
    HJEM
    ========================= */
 export function renderHome() {
- const view = el("content-view");
-const vocabPanel = el("vocab-panel");
-if (vocabPanel) vocabPanel.hidden = true;
-view.innerHTML = `
-  <div class="content-area home-page">
+  const view = el("content-view");
+  const vocabPanel = el("vocab-panel");
+  if (!view) return;
+
+  // Skjul ordliste på forsiden
+  if (vocabPanel) vocabPanel.hidden = true;
+
+  // Tell fullførte tema
+  const totalTopics = Array.isArray(window.appData?.topics) ? window.appData.topics.length : 0;
+  const progress = getUserProgress();
+  const completedTopics = Object.values(progress || {}).filter((t) => t?.completed).length;
+
+  view.innerHTML = `
+    <div class="content-area home-page">
       <header class="content-header">
         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2L15 6L22 7L17 12L18 19L12 16L6 19L7 12L2 7L9 6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -21,30 +31,32 @@ view.innerHTML = `
         <h2>Velkommen til "Norsk på jobben"!</h2>
         <p>Her kan du lære norsk som du kan bruke på jobben hver dag.</p>
       </header>
+
       <div class="content-body">
         <h3>Din fremdrift</h3>
         <p>Du har fullført ${completedTopics} av ${totalTopics} temaer.</p>
-        <div class="progress-bar" role="progressbar" aria-valuenow="${pct(
-          completedTopics,
-          totalTopics
-        )}" aria-valuemin="0" aria-valuemax="100">
+
+        <div class="progress-bar" role="progressbar"
+             aria-valuenow="${pct(completedTopics, totalTopics)}"
+             aria-valuemin="0" aria-valuemax="100">
           <div class="progress" style="width:${pct(completedTopics, totalTopics)}%"></div>
         </div>
 
         <div class="topic-list">
           <h3>Gå til et tema:</h3>
           <ul>
-            ${window.appData.topics
-              .map(
-                (topic, index) => `
-              <li>
-                <a href="#/tema/${index + 1}" class="topic-link">
-                  Tema ${index + 1}: ${topic.title}
-                  ${getUserProgress()[topic.id]?.completed ? " (Fullført)" : ""}
-                </a>
-              </li>`
-              )
-              .join("")}
+            ${
+              (window.appData?.topics || [])
+                .map((topic, index) => `
+                  <li>
+                    <a href="#/tema/${index + 1}" class="topic-link">
+                      Tema ${index + 1}: ${topic.title}
+                      ${getUserProgress()[topic.id]?.completed ? " (Fullført)" : ""}
+                    </a>
+                  </li>
+                `)
+                .join("")
+            }
           </ul>
         </div>
       </div>
@@ -56,21 +68,24 @@ view.innerHTML = `
    TEMA (TEKST + OPPGAVER)
    ========================= */
 export function renderTopicPage(topicId) {
-  const appContainer = el("app-container");
- const view = el("content-view");
+  const view = el("content-view");
+  const vocabPanel = el("vocab-panel");
   const vocabContent = el("vocab-content");
+  if (!view) return;
 
   const topicIndex = parseInt(topicId, 10) - 1;
-  const topic = window.appData.topics[topicIndex];
-  const quizzes = window.appData.quizzes.find((q) => String(q.topicId) === String(topic?.id));
+  const topic = window.appData?.topics?.[topicIndex];
+  const quizzes = (window.appData?.quizzes || []).find(
+    (q) => String(q.topicId) === String(topic?.id)
+  );
 
   if (!topic || !quizzes) {
-   view.innerHTML  = "<p>Temaet ble ikke funnet.</p>";
+    view.innerHTML = `<div class="content-area"><p>Temaet ble ikke funnet.</p></div>`;
     if (vocabPanel) vocabPanel.hidden = true;
     return;
   }
 
-  view.innerHTML = "<p>Temaet ble ikke funnet.</p>";
+  view.innerHTML = `
     <div class="content-area topic-page">
       <header class="content-header">
         ${topic.icon || ""}
@@ -105,7 +120,8 @@ export function renderTopicPage(topicId) {
     vocabContent.innerHTML = `
       <ul class="word-list">
         ${topic.vocabulary.map((v) => `<li><strong>${v.word}</strong>: ${v.explanation}</li>`).join("")}
-      </ul>`;
+      </ul>
+    `;
     vocabPanel.hidden = false;
   }
 
@@ -117,6 +133,8 @@ export function renderTopicPage(topicId) {
    ========================= */
 function renderQuizzes(tasks, topicId) {
   const quizContainer = document.getElementById("quiz-container");
+  if (!quizContainer) return;
+
   let userAttempts = getUserProgress()[topicId] || {
     scores: Array(tasks.length).fill(0),
     attempts: Array(tasks.length).fill(0),
@@ -373,7 +391,7 @@ function renderQuizzes(tasks, topicId) {
 function updateProgressBar() {
   const topicId = String(window.location.hash.split("/")[2] || "");
   const progress = getUserProgress()[topicId] || { scores: [], attempts: [] };
-  const quiz = window.appData.quizzes.find((q) => String(q.topicId) === topicId);
+  const quiz = (window.appData?.quizzes || []).find((q) => String(q.topicId) === topicId);
   const quizCount = quiz ? quiz.tasks.length : 0;
 
   const totalScore = (progress.scores || []).reduce((s, v) => s + (v || 0), 0);
@@ -431,5 +449,4 @@ function setupDragAndDrop() {
     });
   });
 }
-
 
