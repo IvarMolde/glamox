@@ -1,17 +1,13 @@
 [
   {
-    "topicId": "tema1",
+    "topicId": "1",
     "tasks": [
       {
         "type": "Leseforståelse",
         "question": "Hva betyr 'HMS'?",
         "options": [
           { "text": "Hjelp med maskiner og sikkerhet", "value": "A" },
-          {
-            "text": "Helse, miljø og sikkerhet",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "Helse, miljø og sikkerhet", "value": "B", "isCorrect": true },
           { "text": "Hvem jobber i dag?", "value": "C" }
         ]
       },
@@ -46,7 +42,7 @@
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene fra nøkkelordlista.",
-        "sentence": "Hvis du ser en løs kabel, må du [ _ ] til lederen din. Dette er en [ _ ].",
+        "sentence": "Hvis du ser en løs kabel, må du [_] til lederen din. Dette er en [_].",
         "correctAnswers": ["varsle", "nestenulykke"]
       },
       {
@@ -54,18 +50,14 @@
         "question": "Hvorfor er det viktig å melde fra om nestenulykker?",
         "options": [
           { "text": "Fordi det er morsomt.", "value": "A" },
-          {
-            "text": "For å unngå en ekte ulykke senere.",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "For å unngå en ekte ulykke senere.", "value": "B", "isCorrect": true },
           { "text": "Fordi vi må betale en bot.", "value": "C" }
         ]
       }
     ]
   },
   {
-    "topicId": "tema2",
+    "topicId": "2",
     "tasks": [
       {
         "type": "Leseforståelse",
@@ -117,23 +109,19 @@
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene fra teksten.",
-        "sentence": "Du skal aldri ha på [ _ ] sko i et [ _ ]-område.",
+        "sentence": "Du skal aldri ha på [_] sko i et [_]-område.",
         "correctAnswers": ["vanlige", "ESD"]
       }
     ]
   },
   {
-    "topicId": "tema3",
+    "topicId": "3",
     "tasks": [
       {
         "type": "Leseforståelse",
         "question": "Hva skal du gjøre før du monterer en armatur?",
         "options": [
-          {
-            "text": "Plukke de riktige delene",
-            "value": "A",
-            "isCorrect": true
-          },
+          { "text": "Plukke de riktige delene", "value": "A", "isCorrect": true },
           { "text": "Spise lunsj", "value": "B" },
           { "text": "Ringe en venn", "value": "C" }
         ]
@@ -155,7 +143,7 @@
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene fra teksten.",
-        "sentence": "Du skal bruke [ _ ] til å sette sammen delene. Hver del har en fast [ _ ] i produktet.",
+        "sentence": "Du skal bruke [_] til å sette sammen delene. Hver del har en fast [_] i produktet.",
         "correctAnswers": ["verktøy", "plass"]
       },
       {
@@ -184,18 +172,14 @@
     ]
   },
   {
-    "topicId": "tema4",
+    "topicId": "4",
     "tasks": [
       {
         "type": "Leseforståelse",
         "question": "Hva betyr det at en armatur er 'godkjent'?",
         "options": [
           { "text": "At den er ødelagt", "value": "A" },
-          {
-            "text": "At den er klar for pakking",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "At den er klar for pakking", "value": "B", "isCorrect": true },
           { "text": "At den må fikses", "value": "C" }
         ]
       },
@@ -216,7 +200,7 @@
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene.",
-        "sentence": "Hvis lyset [ _ ], er det et problem. Du må fylle ut en [ _ ] hvis noe er feil.",
+        "sentence": "Hvis lyset [_], er det et problem. Du må fylle ut en [_] hvis noe er feil.",
         "correctAnswers": ["flimrer", "feilmelding"]
       },
       {
@@ -239,17 +223,13 @@
         "options": [
           { "text": "Sette den i en eske.", "value": "A" },
           { "text": "Levere den til kunden.", "value": "B" },
-          {
-            "text": "Fylle ut en feilmelding.",
-            "value": "C",
-            "isCorrect": true
-          }
+          { "text": "Fylle ut en feilmelding.", "value": "C", "isCorrect": true }
         ]
       }
     ]
   },
   {
-    "topicId": "tema5",
+    "topicId": "5",
     "tasks": [
       {
         "type": "Leseforståelse",
@@ -281,7 +261,7 @@
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene.",
-        "sentence": "En [ _ ] arbeidsplass er en trygg og [ _ ] arbeidsplass.",
+        "sentence": "En [_] arbeidsplass er en trygg og [_] arbeidsplass.",
         "correctAnswers": ["ryddig", "effektiv"]
       },
       {
@@ -303,29 +283,21 @@
         "question": "Hva er målet med 5S?",
         "options": [
           { "text": "Å spise mat sammen.", "value": "A" },
-          {
-            "text": "Å holde orden på arbeidsplassen.",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "Å holde orden på arbeidsplassen.", "value": "B", "isCorrect": true },
           { "text": "Å fjerne alle maskiner.", "value": "C" }
         ]
       }
     ]
   },
   {
-    "topicId": "tema6",
+    "topicId": "6",
     "tasks": [
       {
         "type": "Leseforståelse",
         "question": "Hva må du sjekke før du pakker en lampe?",
         "options": [
           { "text": "At den har en ripe.", "value": "A" },
-          {
-            "text": "At etiketten stemmer med ordrenummeret.",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "At etiketten stemmer med ordrenummeret.", "value": "B", "isCorrect": true },
           { "text": "At den er blå.", "value": "C" }
         ]
       },
@@ -346,7 +318,7 @@
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene.",
-        "sentence": "En [ _ ] har et unikt nummer for hver bestilling. Vi må være [ _ ] når vi pakker.",
+        "sentence": "En [_] har et unikt nummer for hver bestilling. Vi må være [_] når vi pakker.",
         "correctAnswers": ["ordre", "nøyaktige"]
       },
       {
@@ -368,36 +340,28 @@
         "question": "Hvorfor er god logistikk viktig?",
         "options": [
           { "text": "Fordi det er kjedelig.", "value": "A" },
-          {
-            "text": "Fordi det gjør kunden fornøyd.",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "Fordi det gjør kunden fornøyd.", "value": "B", "isCorrect": true },
           { "text": "Fordi vi sparer penger.", "value": "C" }
         ]
       }
     ]
   },
   {
-    "topicId": "tema7",
+    "topicId": "7",
     "tasks": [
       {
         "type": "Leseforståelse",
         "question": "Hva skal du gjøre hvis du er syk?",
         "options": [
           { "text": "Dra på jobb.", "value": "A" },
-          {
-            "text": "Gi beskjed til lederen din.",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "Gi beskjed til lederen din.", "value": "B", "isCorrect": true },
           { "text": "Spise lunsj hjemme.", "value": "C" }
         ]
       },
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene.",
-        "sentence": "Hvis du kommer for sent, er du [ _ ]. Du må ringe og gi [ _ ] til lederen din.",
+        "sentence": "Hvis du kommer for sent, er du [_]. Du må ringe og gi [_] til lederen din.",
         "correctAnswers": ["forsinket", "beskjed"]
       },
       {
@@ -440,25 +404,21 @@
     ]
   },
   {
-    "topicId": "tema8",
+    "topicId": "8",
     "tasks": [
       {
         "type": "Leseforståelse",
         "question": "Hvorfor skal du spørre hvis du ikke forstår en instruksjon?",
         "options": [
           { "text": "Fordi det er morsomt.", "value": "A" },
-          {
-            "text": "Fordi det er bedre enn å gjøre en feil.",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "Fordi det er bedre enn å gjøre en feil.", "value": "B", "isCorrect": true },
           { "text": "Fordi du ikke liker å jobbe alene.", "value": "C" }
         ]
       },
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene.",
-        "sentence": "Vi jobber sammen som et [ _ ]. God [ _ ] er viktig for at jobben skal gå bra.",
+        "sentence": "Vi jobber sammen som et [_]. God [_] er viktig for at jobben skal gå bra.",
         "correctAnswers": ["team", "kommunikasjon"]
       },
       {
@@ -480,11 +440,7 @@
         "question": "Hva er en 'klar beskjed'?",
         "options": [
           { "text": "En lang historie om noe.", "value": "A" },
-          {
-            "text": "En enkel beskjed som alle forstår.",
-            "value": "B",
-            "isCorrect": true
-          },
+          { "text": "En enkel beskjed som alle forstår.", "value": "B", "isCorrect": true },
           { "text": "En beskjed du ikke liker.", "value": "C" }
         ]
       },
