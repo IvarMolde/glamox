@@ -1,22 +1,26 @@
 import { renderTopicPage, renderHome } from "./quiz.js";
 
-// Define the routes for the application.
+// Ruter vi støtter
 const routes = {
-  "": renderHome,
-  "tema": renderTopicPage, // vi matcher bare 'tema' som path
+  "": renderHome,   // hjem
+  "tema": renderTopicPage, // tema/:id
 };
 
 /**
- * Handles the routing based on the URL hash.
+ * Håndter ruteendring basert på hash (#/...)
  */
 export function handleRouteChange() {
-  const hash = window.location.hash.slice(1); // fjerner '#'
-  const [path, param] = hash.split("/");
+  // Eksempler:
+  // "#/tema/1" -> raw "/tema/1" -> cleaned "tema/1"
+  // "#/"       -> raw "/"       -> cleaned ""
+  const raw = window.location.hash.slice(1);
+  const cleaned = raw.replace(/^\/+/, ""); // <-- viktig!
+  const [path, param] = cleaned.split("/");
 
   let found = false;
   for (const route in routes) {
     if (path === route) {
-      routes[route](param); // sender param (f.eks. "1")
+      routes[route](param);
       found = true;
       break;
     }
@@ -26,26 +30,23 @@ export function handleRouteChange() {
     renderHome();
   }
 
-  updateActiveLink(hash);
+  updateActiveLink("#/" + cleaned); // <-- holder meny-lenker i sync
 }
 
-/**
- * Sets up the event listeners for the router.
- */
+/** Lytt på hash-endring */
 export function setupRouter(routeHandler) {
   window.addEventListener("hashchange", routeHandler);
 }
 
-/**
- * Updates the 'active' class on the navigation links.
- */
+/** Marker aktiv lenke i menyen */
 function updateActiveLink(hash) {
   const links = document.querySelectorAll(".nav-link");
   links.forEach((link) => {
     link.classList.remove("active");
-    if (link.getAttribute("href") === "#" + hash) {
+    link.removeAttribute("aria-current");
+    if (link.getAttribute("href") === hash) {
       link.classList.add("active");
+      link.setAttribute("aria-current", "page");
     }
   });
 }
-
