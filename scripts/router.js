@@ -1,14 +1,20 @@
 import { renderTopicPage, renderHome } from "./quiz.js";
 
-// Bruk capturing group for ID
+// Definer ruter
 const routes = {
-  "": renderHome,
-  "tema/(\\d+)": renderTopicPage, // match "tema/1", "tema/2", ...
+  "": renderHome,          // Hjem
+  "tema/\\d+": renderTopicPage, // Tema/1, Tema/2, ...
 };
 
+/**
+ * Håndter ruteendring basert på hash (#/...)
+ */
 export function handleRouteChange() {
-  const raw = window.location.hash.slice(1); // f.eks. "/tema/1" eller ""
-  const cleaned = raw.replace(/^\/+/, "");   // "tema/1" eller ""
+  // Eksempler:
+  // "#/tema/1" -> raw "/tema/1" -> cleaned "tema/1"
+  // "#/"       -> raw "/"       -> cleaned ""
+  const raw = window.location.hash.slice(1);
+  const cleaned = raw.replace(/^\/+/, "");
   const [path, ...params] = cleaned.split("/");
 
   let found = false;
@@ -28,10 +34,16 @@ export function handleRouteChange() {
   updateActiveLink("#/" + cleaned);
 }
 
+/**
+ * Sett opp lytter for hash-endringer
+ */
 export function setupRouter(routeHandler) {
   window.addEventListener("hashchange", routeHandler);
 }
 
+/**
+ * Marker aktiv lenke i menyen + aria-current for tilgjengelighet
+ */
 function updateActiveLink(hash) {
   const links = document.querySelectorAll(".nav-link");
   links.forEach((link) => {
