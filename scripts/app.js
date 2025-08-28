@@ -41,3 +41,4 @@ async function initializeApp() {
 
 // Start the application when the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", initializeApp);
+
