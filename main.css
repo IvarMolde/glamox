@@ -60,7 +60,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
     flex-wrap: wrap;
 }
@@ -184,7 +184,7 @@ main {
     display: flex;
     padding: 2rem 1rem;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
 }
 
@@ -197,7 +197,7 @@ main {
 
 .content-area {
     flex-grow: 1;
-    max-width: 800px;
+    max-width: 960px;
     padding: 2rem;
     background-color: var(--color-card-bg);
     border-radius: 12px;
@@ -454,4 +454,23 @@ main {
         padding: 0;
         border: none;
     }
+}
+ /* For veldig brede skjermer – øk tekst og kort-bredde litt */
+@media (min-width: 1400px) {
+  :root {
+    --text-base: 1.05rem;
+  }
+  .content-area {
+    max-width: 1040px;
+  }
+}
+
+/* Ultra-brede skjermer – gi mer luft */
+@media (min-width: 1600px) {
+  :root {
+    --text-base: 1.1rem;
+  }
+  .content-area {
+    max-width: 1120px;
+  }
 }
