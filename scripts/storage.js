@@ -5,7 +5,9 @@
 export async function loadTopics() {
   try {
     const response = await fetch("./topics.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(`Could not load topics.json (HTTP ${response.status})`);
+    if (!response.ok) {
+      throw new Error(`Could not load topics.json (HTTP ${response.status})`);
+    }
     const data = await response.json();
     return Array.isArray(data) ? data : [];
   } catch (error) {
@@ -14,10 +16,16 @@ export async function loadTopics() {
   }
 }
 
+/**
+ * Loads the quiz data from the JSON file.
+ * @returns {Promise<Array>} A promise that resolves with the quiz data.
+ */
 export async function loadQuizzes() {
   try {
     const response = await fetch("./quizzes.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(`Could not load quizzes.json (HTTP ${response.status})`);
+    if (!response.ok) {
+      throw new Error(`Could not load quizzes.json (HTTP ${response.status})`);
+    }
     const data = await response.json();
     return Array.isArray(data) ? data : [];
   } catch (error) {
@@ -33,10 +41,11 @@ export async function loadQuizzes() {
  */
 export function saveUserProgress(topicId, progress) {
   const savedProgress = JSON.parse(localStorage.getItem("userProgress") || "{}");
-  savedProgress[String(topicId)] = progress;
+  savedProgress[topicId] = progress;
   localStorage.setItem("userProgress", JSON.stringify(savedProgress));
-  // keep global in sync if present
-  if (window.appData) window.appData.userProgress = savedProgress;
+  if (window.appData) {
+    window.appData.userProgress = savedProgress; // Update global state
+  }
 }
 
 /**
@@ -44,7 +53,9 @@ export function saveUserProgress(topicId, progress) {
  * @returns {Object} The user's progress object.
  */
 export function getUserProgress() {
-  const raw = localStorage.getItem("userProgress");
-  try { return raw ? JSON.parse(raw) : {}; } catch { return {}; }
+  try {
+    return JSON.parse(localStorage.getItem("userProgress") || "{}");
+  } catch {
+    return {};
+  }
 }
-
