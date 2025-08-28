@@ -1,22 +1,23 @@
 import { saveUserProgress, getUserProgress } from "./storage.js";
 
-// Slå opp DOM når vi trenger det (unngå null i modul-lasterekkefølge)
+// En liten helper for å hente elementer
 const el = (id) => document.getElementById(id);
+// Ren prosent uten NaN
+const pct = (num, den) => (den > 0 ? (num / den) * 100 : 0);
 
-/** HJELPER: Ren prosent uten NaN */
-const pct = (num, den) => den > 0 ? (num / den) * 100 : 0;
-
-/** RENDER HOME */
+/* =========================
+   HJEM
+   ========================= */
 export function renderHome() {
   const appContainer = el("app-container");
   const totalTopics = window.appData.topics.length || 0;
   const progress = getUserProgress();
-  const completedTopics = Object.values(progress).filter(t => t.completed).length;
+  const completedTopics = Object.values(progress).filter((t) => t.completed).length;
 
   appContainer.innerHTML = `
     <div class="content-area home-page">
       <header class="content-header">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2L15 6L22 7L17 12L18 19L12 16L6 19L7 12L2 7L9 6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <h2>Velkommen til "Norsk på jobben"!</h2>
@@ -25,19 +26,27 @@ export function renderHome() {
       <div class="content-body">
         <h3>Din fremdrift</h3>
         <p>Du har fullført ${completedTopics} av ${totalTopics} temaer.</p>
-        <div class="progress-bar" role="progressbar" aria-valuenow="${pct(completedTopics, totalTopics)}" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" role="progressbar" aria-valuenow="${pct(
+          completedTopics,
+          totalTopics
+        )}" aria-valuemin="0" aria-valuemax="100">
           <div class="progress" style="width:${pct(completedTopics, totalTopics)}%"></div>
         </div>
+
         <div class="topic-list">
           <h3>Gå til et tema:</h3>
           <ul>
-            ${window.appData.topics.map((topic, index) => `
+            ${window.appData.topics
+              .map(
+                (topic, index) => `
               <li>
-                <a href="#/tema/${index+1}" class="topic-link">
-                  Tema ${index+1}: ${topic.title}
-                  ${progress[topic.id]?.completed ? " (Fullført)" : ""}
+                <a href="#/tema/${index + 1}" class="topic-link">
+                  Tema ${index + 1}: ${topic.title}
+                  ${getUserProgress()[topic.id]?.completed ? " (Fullført)" : ""}
                 </a>
-              </li>`).join("")}
+              </li>`
+              )
+              .join("")}
           </ul>
         </div>
       </div>
@@ -45,15 +54,17 @@ export function renderHome() {
   `;
 }
 
-/** RENDER TEMA */
+/* =========================
+   TEMA (TEKST + OPPGAVER)
+   ========================= */
 export function renderTopicPage(topicId) {
   const appContainer = el("app-container");
   const vocabPanel = el("vocab-panel");
   const vocabContent = el("vocab-content");
 
-  const topicIndex = parseInt(topicId,10) - 1;
+  const topicIndex = parseInt(topicId, 10) - 1;
   const topic = window.appData.topics[topicIndex];
-  const quizzes = window.appData.quizzes.find(q => String(q.topicId) === String(topic?.id));
+  const quizzes = window.appData.quizzes.find((q) => String(q.topicId) === String(topic?.id));
 
   if (!topic || !quizzes) {
     appContainer.innerHTML = "<p>Temaet ble ikke funnet.</p>";
@@ -68,14 +79,20 @@ export function renderTopicPage(topicId) {
         <h2>${topic.title}</h2>
         <p>Tema ${topicId}</p>
       </header>
+
       <div class="content-body">
         <p>${topic.text}</p>
+
         <div class="dialogue">
-          ${topic.dialogues.map(d => `<p><strong>${d.speaker}</strong>: ${d.text}</p>`).join("")}
+          ${topic.dialogues.map((d) => `<p><strong>${d.speaker}</strong>: ${d.text}</p>`).join("")}
         </div>
+
         <h3>Grammatikkfokus</h3>
-        <ul>${topic.grammar.map(g => `<li>${g}</li>`).join("")}</ul>
+        <ul>
+          ${topic.grammar.map((g) => `<li>${g}</li>`).join("")}
+        </ul>
       </div>
+
       <div id="quiz-container" class="quiz-container">
         <h3>Oppgaver</h3>
         <p>Fullfør alle oppgavene for å fullføre temaet.</p>
@@ -86,16 +103,20 @@ export function renderTopicPage(topicId) {
     </div>
   `;
 
-  vocabContent.innerHTML = `
-    <ul class="word-list">
-      ${topic.vocabulary.map(v => `<li><strong>${v.word}</strong>: ${v.explanation}</li>`).join("")}
-    </ul>`;
-  vocabPanel.hidden = false;
+  if (vocabContent && vocabPanel) {
+    vocabContent.innerHTML = `
+      <ul class="word-list">
+        ${topic.vocabulary.map((v) => `<li><strong>${v.word}</strong>: ${v.explanation}</li>`).join("")}
+      </ul>`;
+    vocabPanel.hidden = false;
+  }
 
   renderQuizzes(quizzes.tasks, topic.id);
 }
 
-/** RENDER QUIZZER */
+/* =========================
+   OPPGAVE-RENDERER + LOGIKK
+   ========================= */
 function renderQuizzes(tasks, topicId) {
   const quizContainer = document.getElementById("quiz-container");
   let userAttempts = getUserProgress()[topicId] || {
@@ -103,7 +124,7 @@ function renderQuizzes(tasks, topicId) {
     attempts: Array(tasks.length).fill(0),
   };
 
-  // 1) La renderTask returnere HTML (ikke skrive direkte)
+  // Bygg HTML for én oppgave
   const renderTask = (task, index) => {
     let html = `
       <div class="task-card" data-task-id="${index}">
@@ -114,11 +135,15 @@ function renderQuizzes(tasks, topicId) {
     switch (task.type) {
       case "Leseforståelse":
         html += `<form>
-          ${task.options.map((option, i) => `
+          ${task.options
+            .map(
+              (option, i) => `
             <label class="answer-option" for="task-${index}-option-${i}">
               <input type="radio" id="task-${index}-option-${i}" name="answer" value="${option.value}" aria-label="${option.text}">
               ${option.text}
-            </label>`).join("")}
+            </label>`
+            )
+            .join("")}
         </form>`;
         break;
 
@@ -126,12 +151,20 @@ function renderQuizzes(tasks, topicId) {
         html += `
           <div class="match-container">
             <ul class="match-list" role="listbox" aria-label="Begreper">
-              ${task.terms.map(term => `
-                <li class="match-item" role="option" tabindex="0" data-match-id="${term.id}" draggable="true">${term.text}</li>`).join("")}
+              ${task.terms
+                .map(
+                  (term) => `
+                <li class="match-item" role="option" tabindex="0" data-match-id="${term.id}" draggable="true">${term.text}</li>`
+                )
+                .join("")}
             </ul>
             <ul class="target-list" aria-label="Forklaringer">
-              ${task.explanations.map(ex => `
-                <li class="target-item" data-drop-target="${ex.id}" tabindex="0">${ex.text}</li>`).join("")}
+              ${task.explanations
+                .map(
+                  (ex) => `
+                <li class="target-item" data-drop-target="${ex.id}" tabindex="0">${ex.text}</li>`
+                )
+                .join("")}
             </ul>
           </div>`;
         break;
@@ -139,14 +172,21 @@ function renderQuizzes(tasks, topicId) {
       case "Sorter rekkefølge":
         html += `
           <ul class="sortable-list" role="listbox" aria-label="Trinn i produksjon">
-            ${task.items.map(item => `
-              <li class="sortable-item" role="option" tabindex="0" draggable="true">${item.text}</li>`).join("")}
+            ${task.items
+              .map(
+                (item) => `
+              <li class="sortable-item" role="option" tabindex="0" draggable="true">${item.text}</li>`
+              )
+              .join("")}
           </ul>`;
         break;
 
       case "Fyll-inn-tomrom":
         html += `<p>${
-          task.sentence.replace(/\[_\]/g, `<input type="text" class="cloze-input" aria-label="Fyll inn riktig ord">`)
+          task.sentence.replace(
+            /\[_\]/g,
+            `<input type="text" class="cloze-input" aria-label="Fyll inn riktig ord">`
+          )
         }</p>`;
         break;
 
@@ -154,8 +194,12 @@ function renderQuizzes(tasks, topicId) {
         html += `
           <div class="drag-drop-container">
             <ul class="drag-list" aria-label="Riktige og feil rutiner">
-              ${task.items.map((item, i) => `
-                <li class="drag-item" data-id="${i}" draggable="true" tabindex="0">${item.text}</li>`).join("")}
+              ${task.items
+                .map(
+                  (item, i) => `
+                <li class="drag-item" data-id="${i}" draggable="true" tabindex="0">${item.text}</li>`
+                )
+                .join("")}
             </ul>
             <div class="drop-zone" data-correct-zone="true"><p>Dra de riktige rutinene hit</p></div>
             <div class="drop-zone" data-correct-zone="false"><p>Dra de feile rutinene hit</p></div>
@@ -175,10 +219,10 @@ function renderQuizzes(tasks, topicId) {
     return html;
   };
 
-  // 2) Tegn alt i ett
+  // Tegn alle oppgaver i ett
   quizContainer.innerHTML = tasks.map((t, i) => renderTask(t, i)).join("");
 
-  // 3) Bind knapper (en enkel all-rebind er ok her)
+  // Koble knapper/handlinger
   function bindAllTaskListeners() {
     document.querySelectorAll(".task-card").forEach((card) => {
       const checkBtn = card.querySelector(".check-btn");
@@ -194,37 +238,45 @@ function renderQuizzes(tasks, topicId) {
           case "Leseforståelse": {
             const selected = card.querySelector('input[name="answer"]:checked');
             if (selected) {
-              const correct = task.options.find(o => o.isCorrect);
+              const correct = task.options.find((o) => o.isCorrect);
               isCorrect = selected.value === correct.value;
             }
             break;
           }
           case "Match begrep-forklaring": {
             const matches = card.querySelectorAll(".match-item");
-            isCorrect = Array.from(matches).every(item => {
-              const dropTarget = card.querySelector(`[data-drop-target="${item.dataset.matchId}"]`);
+            isCorrect = Array.from(matches).every((item) => {
+              const dropTarget = card.querySelector(
+                `[data-drop-target="${item.dataset.matchId}"]`
+              );
               return dropTarget && dropTarget.contains(item);
             });
             break;
           }
           case "Fyll-inn-tomrom": {
             const inputs = card.querySelectorAll(".cloze-input");
-            isCorrect = Array.from(inputs).every((input, i) =>
-              input.value.trim().toLowerCase() === task.correctAnswers[i].toLowerCase()
+            isCorrect = Array.from(inputs).every(
+              (input, i) =>
+                input.value.trim().toLowerCase() ===
+                task.correctAnswers[i].toLowerCase()
             );
             break;
           }
           case "Sorter rekkefølge": {
             const sortedItems = Array.from(card.querySelectorAll(".sortable-item"));
-            const itemOrder = sortedItems.map(li => li.textContent.trim());
-            isCorrect = JSON.stringify(itemOrder) === JSON.stringify(task.correctOrder.map(co => co.text));
+            const itemOrder = sortedItems.map((li) => li.textContent.trim());
+            isCorrect =
+              JSON.stringify(itemOrder) ===
+              JSON.stringify(task.correctOrder.map((co) => co.text));
             break;
           }
           case "Dra-og-slipp": {
             const correctZone = card.querySelector('.drop-zone[data-correct-zone="true"]');
             const inZone = correctZone ? Array.from(correctZone.querySelectorAll(".drag-item")) : [];
-            const numCorrect = task.items.filter(it => it.isCorrect).length;
-            isCorrect = inZone.length === numCorrect && inZone.every(it => task.items[it.dataset.id].isCorrect);
+            const numCorrect = task.items.filter((it) => it.isCorrect).length;
+            isCorrect =
+              inZone.length === numCorrect &&
+              inZone.every((it) => task.items[it.dataset.id].isCorrect);
             break;
           }
         }
@@ -249,19 +301,22 @@ function renderQuizzes(tasks, topicId) {
         updateProgressBar();
 
         if (isCorrect) {
-          checkBtn.hidden = true; solutionBtn.hidden = true; retryBtn.hidden = true;
+          checkBtn.hidden = true;
+          solutionBtn.hidden = true;
+          retryBtn.hidden = true;
         } else if (userAttempts.attempts[taskId] >= 2) {
-          retryBtn.hidden = false; solutionBtn.hidden = false;
+          retryBtn.hidden = false;
+          solutionBtn.hidden = false;
         }
       });
 
       retryBtn.addEventListener("click", () => {
         userAttempts.attempts[taskId] = 0;
         saveUserProgress(topicId, userAttempts);
-        // Erstatt dette kortet med en ny versjon (ikke legg til)
+        // Tegn akkurat dette kortet på nytt
         const html = renderTask(tasks[taskId], taskId);
         card.outerHTML = html;
-        bindAllTaskListeners(); // rebind knapper
+        bindAllTaskListeners(); // rebind for nye elementer
         setupDragAndDrop();     // rebind DnD
       });
 
@@ -272,7 +327,7 @@ function renderQuizzes(tasks, topicId) {
 
         switch (task.type) {
           case "Leseforståelse": {
-            const correct = task.options.find(o => o.isCorrect);
+            const correct = task.options.find((o) => o.isCorrect);
             solutionText += correct.text;
             break;
           }
@@ -281,25 +336,30 @@ function renderQuizzes(tasks, topicId) {
             break;
           }
           case "Sorter rekkefølge": {
-            solutionText += task.correctOrder.map(it => it.text).join(" -> ");
+            solutionText += task.correctOrder.map((it) => it.text).join(" -> ");
             break;
           }
           case "Dra-og-slipp": {
-            const correctItems = task.items.filter(it => it.isCorrect).map(it => it.text).join(", ");
+            const correctItems = task.items
+              .filter((it) => it.isCorrect)
+              .map((it) => it.text)
+              .join(", ");
             solutionText += `Riktige rutiner er: ${correctItems}`;
             break;
           }
           case "Match begrep-forklaring": {
-            solutionText += task.terms.map(term => {
-              const ex = task.explanations.find(e => e.id === term.id);
-              return `${term.text} = ${ex.text}`;
-            }).join(", ");
+            solutionText += task.terms
+              .map((term) => {
+                const ex = task.explanations.find((e) => e.id === term.id);
+                return `${term.text} = ${ex.text}`;
+              })
+              .join(", ");
             break;
           }
         }
         feedbackEl.hidden = false;
         feedbackEl.textContent = solutionText;
-        feedbackEl.classList.remove("feedback-correct","feedback-incorrect");
+        feedbackEl.classList.remove("feedback-correct", "feedback-incorrect");
       });
     });
   }
@@ -309,11 +369,13 @@ function renderQuizzes(tasks, topicId) {
   updateProgressBar();
 }
 
-/** PROGRESS BAR */
+/* =========================
+   FREMGANGSSTREK
+   ========================= */
 function updateProgressBar() {
   const topicId = String(window.location.hash.split("/")[2] || "");
   const progress = getUserProgress()[topicId] || { scores: [], attempts: [] };
-  const quiz = window.appData.quizzes.find(q => String(q.topicId) === topicId);
+  const quiz = window.appData.quizzes.find((q) => String(q.topicId) === topicId);
   const quizCount = quiz ? quiz.tasks.length : 0;
 
   const totalScore = (progress.scores || []).reduce((s, v) => s + (v || 0), 0);
@@ -332,7 +394,9 @@ function updateProgressBar() {
   }
 }
 
-/** DnD (som før – men kall etter at DOM er tegnet) */
+/* =========================
+   DRAG & DROP
+   ========================= */
 function setupDragAndDrop() {
   let draggedItem = null;
 
@@ -346,15 +410,23 @@ function setupDragAndDrop() {
         e.dataTransfer.setData("text/plain", "dragged-item");
         e.dataTransfer.effectAllowed = "move";
       });
-      item.addEventListener("dragend", () => { draggedItem = null; });
+      item.addEventListener("dragend", () => {
+        draggedItem = null;
+      });
     });
 
     dropZones.forEach((zone) => {
-      zone.addEventListener("dragover", (e) => { e.preventDefault(); e.dataTransfer.dropEffect = "move"; });
+      zone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+      });
       zone.addEventListener("drop", (e) => {
         e.preventDefault();
         if (!draggedItem) return;
-        if (e.target.classList.contains("target-item") || e.target.classList.contains("drop-zone")) {
+        if (
+          e.target.classList.contains("target-item") ||
+          e.target.classList.contains("drop-zone")
+        ) {
           e.target.appendChild(draggedItem);
         }
       });
