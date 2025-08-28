@@ -3,7 +3,26 @@
  * This includes keyboard navigation, theme toggles, and text size controls.
  */
 export function setupA11y() {
-  // Select all necessary elements.
+  // Ensure a live region exists for announcements (SR only).
+  let live = document.getElementById("a11y-live");
+  if (!live) {
+    live = document.createElement("div");
+    live.id = "a11y-live";
+    live.setAttribute("role", "status");
+    live.setAttribute("aria-live", "polite");
+    live.style.position = "absolute";
+    live.style.width = "1px";
+    live.style.height = "1px";
+    live.style.overflow = "hidden";
+    live.style.clip = "rect(1px,1px,1px,1px)";
+    live.style.clipPath = "inset(50%)";
+    live.style.whiteSpace = "nowrap";
+    live.style.border = "0";
+    document.body.appendChild(live);
+  }
+  const announce = (msg) => { live.textContent = msg; };
+
+  // Elements (guard each one)
   const themeToggleBtn = document.getElementById("theme-toggle");
   const sizeIncreaseBtn = document.getElementById("size-increase");
   const sizeDecreaseBtn = document.getElementById("size-decrease");
@@ -12,108 +31,139 @@ export function setupA11y() {
   const menuBtn = document.getElementById("menu-btn");
   const navMenu = document.getElementById("nav-menu");
 
-  // Add event listener for theme toggling (light/dark mode).
-  themeToggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("theme-dark");
-    // Save the new theme state to localStorage.
-    const newTheme = document.body.classList.contains("theme-dark")
-      ? "dark"
-      : "light";
-    localStorage.setItem("theme", newTheme);
-    window.appData.settings.theme = newTheme;
-  });
+  // THEME TOGGLE (light/dark)
+  if (themeToggleBtn) {
+    const applyThemeAria = () => {
+      const dark = document.body.classList.contains("theme-dark");
+      themeToggleBtn.setAttribute("aria-pressed", String(dark));
+    };
+    themeToggleBtn.addEventListener("click", () => {
+      // Toggle specific classes, don't nuke other classes on body.
+      document.body.classList.toggle("theme-dark");
+      document.body.classList.toggle("theme-light", !document.body.classList.contains("theme-dark"));
 
-  // Add event listener for increasing text size.
-  sizeIncreaseBtn.addEventListener("click", () => {
-    let currentSize = window.appData.settings.textSize;
-    // Increase text size by 10% up to a maximum of 200%.
-    if (currentSize < 2) {
-      currentSize = Math.min(2, currentSize + 0.1);
-      applyTextSize(currentSize);
-    }
-  });
+      const newTheme = document.body.classList.contains("theme-dark") ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      if (window.appData?.settings) window.appData.settings.theme = newTheme;
 
-  // Add event listener for decreasing text size.
-  sizeDecreaseBtn.addEventListener("click", () => {
-    let currentSize = window.appData.settings.textSize;
-    // Decrease text size by 10% down to a minimum of 90%.
-    if (currentSize > 0.9) {
-      currentSize = Math.max(0.9, currentSize - 0.1);
-      applyTextSize(currentSize);
-    }
-  });
+      applyThemeAria();
+      announce(newTheme === "dark" ? "Mørk modus på." : "Lys modus på.");
+    });
+    applyThemeAria();
+  }
 
-  // Event listeners for the vocabulary panel.
-  vocabCloseBtn.addEventListener("click", () => {
-    vocabPanel.hidden = true;
-  });
-
-  // Event listener for mobile menu.
-  if (menuBtn && navMenu) {
-    menuBtn.addEventListener("click", () => {
-      const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", !isExpanded);
-      navMenu.classList.toggle("expanded", !isExpanded);
+  // TEXT SIZE (via CSS var --text-base)
+  if (sizeIncreaseBtn) {
+    sizeIncreaseBtn.addEventListener("click", () => {
+      let current = Number(window.appData?.settings?.textSize ?? 1);
+      const next = clamp(round1(current + 0.1), 0.9, 2);
+      if (next !== current) {
+        applyTextSize(next);
+        announce(`Tekststørrelse ${Math.round(next * 100)} prosent.`);
+      }
+    });
+  }
+  if (sizeDecreaseBtn) {
+    sizeDecreaseBtn.addEventListener("click", () => {
+      let current = Number(window.appData?.settings?.textSize ?? 1);
+      const next = clamp(round1(current - 0.1), 0.9, 2);
+      if (next !== current) {
+        applyTextSize(next);
+        announce(`Tekststørrelse ${Math.round(next * 100)} prosent.`);
+      }
     });
   }
 
-  // Function to handle keyboard-based drag-and-drop.
+  // VOCAB PANEL
+  if (vocabPanel && vocabCloseBtn) {
+    vocabCloseBtn.addEventListener("click", () => {
+      vocabPanel.hidden = true;
+      announce("Ordliste lukket.");
+    });
+  }
+
+  // MOBILE MENU
+  if (menuBtn && navMenu) {
+    menuBtn.addEventListener("click", () => {
+      const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
+      const next = !isExpanded;
+      menuBtn.setAttribute("aria-expanded", String(next));
+      navMenu.classList.toggle("expanded", next);
+      announce(next ? "Meny åpnet." : "Meny lukket.");
+    });
+  }
+
+  // Keyboard-based drag and drop (defensive)
   document.addEventListener("keydown", (e) => {
-    const activeElement = document.activeElement;
-    // Check if the active element is a drag-and-drop item.
-    if (
-      activeElement &&
-      activeElement.classList.contains("match-item") &&
-      e.key === " "
-    ) {
+    const activeEl = document.activeElement;
+    if (!activeEl) return;
+
+    // Space toggles "grab" for .match-item / .sortable-item / .drag-item
+    if (e.key === " " && (activeEl.classList.contains("match-item") ||
+                          activeEl.classList.contains("sortable-item") ||
+                          activeEl.classList.contains("drag-item"))) {
       e.preventDefault();
-      // Simulate drag with spacebar.
-      if (activeElement.getAttribute("aria-grabbed") === "true") {
-        // Drop the item.
-        const target = document.querySelector(
-          '.target-item[data-drop-target][aria-dropeffect="move"]'
-        );
-        if (target) {
-          // Trigger the drop logic.
-          const event = new CustomEvent("drop", {
-            detail: { keyboard: true, source: activeElement },
-            bubbles: true,
-            cancelable: true,
-          });
-          target.dispatchEvent(event);
-        }
-        activeElement.setAttribute("aria-grabbed", "false");
-      } else {
-        // Grab the item.
-        activeElement.setAttribute("aria-grabbed", "true");
-      }
+      const grabbed = activeEl.getAttribute("aria-grabbed") === "true";
+      activeEl.setAttribute("aria-grabbed", String(!grabbed));
+      announce(!grabbed ? "Element valgt." : "Element sluppet.");
+    }
+
+    // Enter tries to drop onto focused target-item or drop-zone
+    if (e.key === "Enter" && (activeEl.classList.contains("target-item") || activeEl.classList.contains("drop-zone"))) {
+      // Find last grabbed item within the same task-card
+      const card = activeEl.closest(".task-card");
+      if (!card) return;
+      const grabbedItem = card.querySelector('.match-item[aria-grabbed="true"], .sortable-item[aria-grabbed="true"], .drag-item[aria-grabbed="true"]');
+      if (!grabbedItem) return;
+
+      // Fire a synthetic drop event like the pointer version expects
+      const event = new CustomEvent("drop", {
+        detail: { keyboard: true, source: grabbedItem },
+        bubbles: true,
+        cancelable: true,
+      });
+      activeEl.dispatchEvent(event);
+      grabbedItem.setAttribute("aria-grabbed", "false");
+      announce("Element plassert.");
     }
   });
 }
 
 /**
- * Applies the current text size setting to the document.
- * @param {number} size The text size multiplier.
+ * Applies the current text size setting.
+ * Uses CSS variable --text-base so the whole app scales consistently.
+ * @param {number} size multiplier (0.9 - 2.0)
  */
 function applyTextSize(size) {
-  document.documentElement.style.fontSize = `${size}rem`;
-  localStorage.setItem("textSize", size);
-  window.appData.settings.textSize = size;
+  const clamped = clamp(size, 0.9, 2);
+  // Update CSS variable consumed by body { font-size: var(--text-base); }
+  document.documentElement.style.setProperty("--text-base", `${clamped}rem`);
+  localStorage.setItem("textSize", String(clamped));
+  if (window.appData?.settings) window.appData.settings.textSize = clamped;
 }
 
 /**
- * Applies all saved settings (theme, text size, contrast).
- * @param {Object} settings The settings object.
+ * Applies saved settings (theme, text size, high contrast).
+ * Avoid wiping unrelated classes from <body>.
+ * @param {Object} settings
  */
 export function applySettings(settings) {
-  document.body.className = "";
-  if (settings.theme === "dark") {
-    document.body.classList.add("theme-dark");
-  } else {
-    document.body.classList.add("theme-light");
-  }
-  if (settings.highContrast) {
-    document.body.classList.add("high-contrast");
-  }
-  applyTextSize(settings.textSize);
+  const body = document.body;
+
+  // Remove only theme/contrast classes we manage
+  body.classList.remove("theme-dark", "theme-light", "high-contrast");
+
+  // Theme
+  if (settings.theme === "dark") body.classList.add("theme-dark");
+  else body.classList.add("theme-light");
+
+  // High contrast
+  if (settings.highContrast) body.classList.add("high-contrast");
+
+  // Text size
+  applyTextSize(Number(settings.textSize ?? 1));
 }
+
+/* helpers */
+function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+function round1(n) { return Math.round(n * 10) / 10; }
