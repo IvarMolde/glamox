@@ -2,43 +2,33 @@ import { renderTopicPage, renderHome } from "./quiz.js";
 
 // Ruter vi støtter
 const routes = {
-  "": renderHome,   // hjem
+  "": renderHome,      // hjem
   "tema": renderTopicPage, // tema/:id
 };
 
-/**
- * Håndter ruteendring basert på hash (#/...)
- */
 export function handleRouteChange() {
-  // Eksempler:
   // "#/tema/1" -> raw "/tema/1" -> cleaned "tema/1"
-  // "#/"       -> raw "/"       -> cleaned ""
   const raw = window.location.hash.slice(1);
-  const cleaned = raw.replace(/^\/+/, ""); // <-- viktig!
+  const cleaned = raw.replace(/^\/+/, ""); // fjern ledende "/"
   const [path, param] = cleaned.split("/");
 
   let found = false;
   for (const route in routes) {
     if (path === route) {
-      routes[route](param);
+      routes[route](param); // f.eks. "1"
       found = true;
       break;
     }
   }
+  if (!found) renderHome();
 
-  if (!found) {
-    renderHome();
-  }
-
-  updateActiveLink("#/" + cleaned); // <-- holder meny-lenker i sync
+  updateActiveLink("#/" + cleaned);
 }
 
-/** Lytt på hash-endring */
 export function setupRouter(routeHandler) {
   window.addEventListener("hashchange", routeHandler);
 }
 
-/** Marker aktiv lenke i menyen */
 function updateActiveLink(hash) {
   const links = document.querySelectorAll(".nav-link");
   links.forEach((link) => {
