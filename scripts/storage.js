@@ -4,13 +4,12 @@
  */
 export async function loadTopics() {
   try {
-    const response = await fetch("./data/topics.json");
-    if (!response.ok) {
-      throw new Error("Could not load topics.json");
-    }
-    return await response.json();
+    const response = await fetch("./topics.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`Could not load topics.json (HTTP ${response.status})`);
+    const data = await response.json();
+    return Array.isArray(data) ? data : [];
   } catch (error) {
-    console.error(error);
+    console.error("[loadTopics]", error);
     return [];
   }
 }
@@ -21,13 +20,12 @@ export async function loadTopics() {
  */
 export async function loadQuizzes() {
   try {
-    const response = await fetch("./data/quizzes.json");
-    if (!response.ok) {
-      throw new Error("Could not load quizzes.json");
-    }
-    return await response.json();
+    const response = await fetch("./quizzes.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`Could not load quizzes.json (HTTP ${response.status})`);
+    const data = await response.json();
+    return Array.isArray(data) ? data : [];
   } catch (error) {
-    console.error(error);
+    console.error("[loadQuizzes]", error);
     return [];
   }
 }
@@ -38,12 +36,11 @@ export async function loadQuizzes() {
  * @param {Object} progress An object containing scores and attempts.
  */
 export function saveUserProgress(topicId, progress) {
-  const savedProgress = JSON.parse(
-    localStorage.getItem("userProgress") || "{}"
-  );
-  savedProgress[topicId] = progress;
+  const savedProgress = JSON.parse(localStorage.getItem("userProgress") || "{}");
+  savedProgress[String(topicId)] = progress;
   localStorage.setItem("userProgress", JSON.stringify(savedProgress));
-  window.appData.userProgress = savedProgress; // Update global state
+  // keep global in sync if present
+  if (window.appData) window.appData.userProgress = savedProgress;
 }
 
 /**
@@ -51,5 +48,6 @@ export function saveUserProgress(topicId, progress) {
  * @returns {Object} The user's progress object.
  */
 export function getUserProgress() {
-  return JSON.parse(localStorage.getItem("userProgress") || "{}");
+  const raw = localStorage.getItem("userProgress");
+  try { return raw ? JSON.parse(raw) : {}; } catch { return {}; }
 }
