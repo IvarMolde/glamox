@@ -14,10 +14,6 @@ export async function loadTopics() {
   }
 }
 
-/**
- * Loads the quiz data from the JSON file.
- * @returns {Promise<Array>} A promise that resolves with the quiz data.
- */
 export async function loadQuizzes() {
   try {
     const response = await fetch("./quizzes.json", { cache: "no-store" });
@@ -51,3 +47,4 @@ export function getUserProgress() {
   const raw = localStorage.getItem("userProgress");
   try { return raw ? JSON.parse(raw) : {}; } catch { return {}; }
 }
+
