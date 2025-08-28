@@ -9,12 +9,10 @@ const pct = (num, den) => (den > 0 ? (num / den) * 100 : 0);
    HJEM
    ========================= */
 export function renderHome() {
-  const appContainer = el("app-container");
-  const totalTopics = window.appData.topics.length || 0;
-  const progress = getUserProgress();
-  const completedTopics = Object.values(progress).filter((t) => t.completed).length;
-
-  appContainer.innerHTML = `
+ const view = el("content-view");
+const vocabPanel = el("vocab-panel");
+if (vocabPanel) vocabPanel.hidden = true;
+view.innerHTML = `...`;
     <div class="content-area home-page">
       <header class="content-header">
         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -433,3 +431,4 @@ function setupDragAndDrop() {
     });
   });
 }
+
