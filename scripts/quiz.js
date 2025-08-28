@@ -12,8 +12,8 @@ export function renderHome() {
  const view = el("content-view");
 const vocabPanel = el("vocab-panel");
 if (vocabPanel) vocabPanel.hidden = true;
-view.innerHTML = `...`;
-    <div class="content-area home-page">
+view.innerHTML = `
+  <div class="content-area home-page">
       <header class="content-header">
         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2L15 6L22 7L17 12L18 19L12 16L6 19L7 12L2 7L9 6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -57,7 +57,7 @@ view.innerHTML = `...`;
    ========================= */
 export function renderTopicPage(topicId) {
   const appContainer = el("app-container");
-  const vocabPanel = el("vocab-panel");
+ const view = el("content-view");
   const vocabContent = el("vocab-content");
 
   const topicIndex = parseInt(topicId, 10) - 1;
@@ -65,12 +65,12 @@ export function renderTopicPage(topicId) {
   const quizzes = window.appData.quizzes.find((q) => String(q.topicId) === String(topic?.id));
 
   if (!topic || !quizzes) {
-    appContainer.innerHTML = "<p>Temaet ble ikke funnet.</p>";
+   view.innerHTML  = "<p>Temaet ble ikke funnet.</p>";
     if (vocabPanel) vocabPanel.hidden = true;
     return;
   }
 
-  appContainer.innerHTML = `
+  view.innerHTML = "<p>Temaet ble ikke funnet.</p>";
     <div class="content-area topic-page">
       <header class="content-header">
         ${topic.icon || ""}
@@ -431,4 +431,5 @@ function setupDragAndDrop() {
     });
   });
 }
+
 
