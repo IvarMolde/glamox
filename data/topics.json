@@ -1,0 +1,415 @@
+[
+  {
+    "id": "tema1",
+    "title": "HMS og verneutstyr",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2L2 7V17L12 22L22 17V7L12 2Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 16L12 12V8\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 8H12.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "På fabrikken er sikkerhet det viktigste. Vi passer på oss selv og kollegaene våre. Alle som jobber her, må alltid bruke verneutstyr. Det betyr hjelm, vernesko og vernebriller. Noen ganger må vi også bruke hørselvern. Før du starter jobben, må du sjekke at utstyret er i orden. Hvis du ser noe som ikke er trygt, må du si ifra til lederen din med en gang. Dette kaller vi et avvik. Hvis nesten noe dårlig skjedde, er det en nestenulykke. Vi må melde fra om alle nestenulykker. Det er viktig. Vi skal lære av feil for å unngå ulykker. Arbeidsplassen skal være trygg for alle.",
+    "vocabulary": [
+      {
+        "word": "HMS",
+        "explanation": "Helse, miljø og sikkerhet. Regler for å jobbe trygt."
+      },
+      {
+        "word": "Verneutstyr",
+        "explanation": "Utstyr som beskytter deg, for eksempel hjelm, hansker og briller."
+      },
+      { "word": "Hjelm", "explanation": "Beskyttelse for hodet." },
+      {
+        "word": "Vernebriller",
+        "explanation": "Briller som beskytter øynene dine."
+      },
+      { "word": "Vernesko", "explanation": "Sko som beskytter føttene dine." },
+      { "word": "Hansker", "explanation": "Beskytter hendene dine." },
+      {
+        "word": "Avvik",
+        "explanation": "Når noe er feil eller ikke etter reglene."
+      },
+      {
+        "word": "Nestenvlykker",
+        "explanation": "Når en ulykke nesten skjedde."
+      },
+      {
+        "word": "Varsle",
+        "explanation": "Å si ifra til en leder om et problem."
+      },
+      { "word": "Sikkerhet", "explanation": "Å være trygg og uten fare." }
+    ],
+    "dialogues": [
+      { "speaker": "Leder", "text": "Husk verneutstyr før du starter." },
+      { "speaker": "Arbeider", "text": "Ja, jeg har hjelm og briller på." },
+      {
+        "speaker": "Arbeider",
+        "text": "Jeg ser en løs kabel her. Skal jeg si ifra til HMS-ansvarlig?"
+      },
+      { "speaker": "Leder", "text": "Ja, du skal varsle med en gang. Takk!" }
+    ],
+    "grammar": [
+      "Bruken av 'må', 'kan' og 'skal' for regler og plikter.",
+      "Imperativ i instrukser: 'Husk', 'Sjekk', 'Si ifra'."
+    ]
+  },
+  {
+    "id": "tema2",
+    "title": "ESD-rutiner",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 14H11V16H13V14ZM13 7H11V12H13V7Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "Elektroniske komponenter er veldig følsomme. Statisk elektrisitet kan skade dem. For å unngå skade, må vi ha gode ESD-rutiner. ESD står for 'Electrostatic Discharge'. Før du rører elektronikken, skal du bruke et antistatisk armbånd. Armbåndet er festet til et jordingspunkt på arbeidsbenken. Noen ganger står du på en antistatisk matte, den er også koblet til jord. Dette gjør at den statiske elektrisiteten forsvinner. Du må aldri ha på vanlige sko i ESD-området, for de leder ikke strøm. Det er viktig å jobbe rolig og forsiktig. Etter at du har montert en komponent, skal du legge den i en spesiell, beskyttende pose.",
+    "vocabulary": [
+      {
+        "word": "ESD",
+        "explanation": "Elektrostatisk utladning. Det er statisk strøm som kan skade elektronikk."
+      },
+      {
+        "word": "Antistatisk armbånd",
+        "explanation": "Et armbånd som fjerner statisk strøm fra kroppen din."
+      },
+      {
+        "word": "Jording",
+        "explanation": "Kobling til bakken for å lede bort strøm."
+      },
+      {
+        "word": "Komponent",
+        "explanation": "En liten del som brukes i et elektronisk produkt, f.eks. en chip eller en motstand."
+      },
+      {
+        "word": "Beskyttende pose",
+        "explanation": "En spesiell pose som beskytter mot statisk strøm."
+      },
+      {
+        "word": "Følsom",
+        "explanation": "En ting som lett blir ødelagt, for eksempel av statisk strøm."
+      },
+      {
+        "word": "Sko",
+        "explanation": "Man bruker spesielle sko for å ikke ha statisk strøm på seg."
+      },
+      { "word": "Arbeidsbenk", "explanation": "Bordet der man jobber." },
+      { "word": "Rutiner", "explanation": "En fast måte å gjøre ting på." }
+    ],
+    "dialogues": [
+      { "speaker": "Arbeider", "text": "Må jeg alltid ha på armbåndet?" },
+      {
+        "speaker": "Leder",
+        "text": "Ja, du skal ha det på hele tiden når du jobber med elektronikken."
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Jeg skal jobbe med en ny type armatur. Skal jeg bruke den beskyttende posen?"
+      },
+      {
+        "speaker": "Leder",
+        "text": "Ja, alle elektroniske deler skal i posen etter montering."
+      }
+    ],
+    "grammar": [
+      "Bruken av 'skal' og 'må' for å beskrive regler og plikter.",
+      "Tidsuttrykk som 'før' og 'etter'."
+    ]
+  },
+  {
+    "id": "tema3",
+    "title": "Montering av armaturer",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V12H13V17ZM13 7H11V9H13V7Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "I produksjonen monterer vi lamper, eller armaturer. Hver armatur består av mange deler. Først plukker du riktige deler. Du finner dem i hyllene. Så skal du følge en tegning. Tegningen viser deg hvordan du skal montere delene. Husk å bruke riktig verktøy. Noen deler skal du skru, andre deler skal du bare trykke på plass. Det er viktig å være nøyaktig. Etter at du er ferdig, må du alltid sjekke at alt er riktig. Linsen må sitte fast og kablene må være på riktig sted. Hvis du gjør en feil, kan du ødelegge lampen. Hvis du er usikker, kan du spørre en kollega eller en leder om hjelp.",
+    "vocabulary": [
+      { "word": "Armatur", "explanation": "En komplett lampe, klar til bruk." },
+      { "word": "Montere", "explanation": "Å sette sammen deler." },
+      { "word": "Del", "explanation": "En liten bit av et produkt." },
+      {
+        "word": "Verktøy",
+        "explanation": "Redskap som du bruker for å jobbe, f.eks. en skrutrekker."
+      },
+      {
+        "word": "Tegning",
+        "explanation": "Et bilde som viser hvordan man skal montere."
+      },
+      { "word": "Kabel", "explanation": "En ledning for strøm." },
+      {
+        "word": "Lense",
+        "explanation": "Den gjennomsiktige delen foran LED-lyset."
+      },
+      {
+        "word": "Nøyaktig",
+        "explanation": "Å være veldig presis og ikke gjøre feil."
+      },
+      { "word": "Utsende", "explanation": "Hvordan noe ser ut." }
+    ],
+    "dialogues": [
+      {
+        "speaker": "Arbeider",
+        "text": "Hvilken tegning skal jeg bruke for denne armaturen?"
+      },
+      {
+        "speaker": "Leder",
+        "text": "Tegningen henger på veggen ved siden av arbeidsbenken."
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Jeg er usikker på hvor denne delen skal. Kan du hjelpe meg?"
+      },
+      {
+        "speaker": "Kollega",
+        "text": "Ja, selvfølgelig. Den skal skrues fast her."
+      }
+    ],
+    "grammar": [
+      "Bruken av 'skal' i instruksjoner.",
+      "Enkle preposisjoner for posisjon: 'på', 'ved', 'i'."
+    ]
+  },
+  {
+    "id": "tema4",
+    "title": "Kvalitetskontroll og testing",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13.5 10.5L10.5 13.5L12 15L15 12L13.5 10.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "Når en armatur er ferdig montert, skal vi teste den. Testing er en del av kvalitetskontrollen. Vi skal sjekke at alt er riktig. Først skal du se på lampen. Er den fin? Er det ingen riper? Ser den riktig ut? Etterpå skal du koble lampen til strøm. Lyset skal lyse, og det skal ikke flimre. Hvis alt er bra, kan du sette et 'godkjent'-merke på armaturen. Det betyr at den kan pakkes. Hvis noe er feil, er armaturen 'ikke godkjent'. Da må du skrive en feilmelding og si ifra til lederen din. Feil kan være at lyset ikke virker, at det er riper på linsen, eller at en skrue er løs. Vi skal alltid levere produkter av høy kvalitet.",
+    "vocabulary": [
+      {
+        "word": "Kvalitetskontroll",
+        "explanation": "Å sjekke at et produkt er bra."
+      },
+      {
+        "word": "Teste",
+        "explanation": "Å prøve om noe virker, for eksempel en lampe."
+      },
+      {
+        "word": "Godkjent",
+        "explanation": "At noe er bra, og kan sendes videre."
+      },
+      {
+        "word": "Ikke godkjent",
+        "explanation": "At noe er feil og må fikses."
+      },
+      { "word": "Ripe", "explanation": "Et merke på overflaten." },
+      {
+        "word": "Feilmelding",
+        "explanation": "Et skjema hvor du skriver om feil."
+      },
+      { "word": "Flimre", "explanation": "Når lyset blinker raskt." },
+      { "word": "Levere", "explanation": "Å sende ut et produkt." },
+      { "word": "Høy kvalitet", "explanation": "At et produkt er veldig bra." }
+    ],
+    "dialogues": [
+      {
+        "speaker": "Arbeider",
+        "text": "Hva gjør jeg med denne lampen? Lyset virker ikke."
+      },
+      {
+        "speaker": "Leder",
+        "text": "Den er ikke godkjent. Du må fylle ut en feilmelding."
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Alle lampene er godkjent. Skal jeg pakke dem nå?"
+      },
+      { "speaker": "Leder", "text": "Ja, du kan pakke dem nå." }
+    ],
+    "grammar": [
+      "Bruken av 'når' og 'hvis' for å beskrive hendelser og betingelser.",
+      "Enkle uttrykk for godkjenning: 'godkjent' / 'ikke godkjent'."
+    ]
+  },
+  {
+    "id": "tema5",
+    "title": "Orden og 5S",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 14H11V16H13V14ZM13 7H11V12H13V7Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "5S er et system for å holde orden på arbeidsplassen. Det gjør jobben enklere og tryggere. De fem S-ene står for: Sorter, Systematiser, Skinne, Standardiser, og Sikre. 'Sorter' betyr at vi skal fjerne alt vi ikke trenger. Vi skal kaste søppel og ting som er ødelagt. 'Systematiser' betyr at alle verktøy og deler skal ha en fast plass. 'Skinne' betyr at vi skal holde arbeidsplassen ren og ryddig hver dag. 'Standardiser' betyr at vi skal gjøre ting på samme måte hver dag. 'Sikre' betyr at vi skal jobbe med å forbedre oss hele tiden. En ryddig arbeidsplass er en trygg og effektiv arbeidsplass. Dette er viktig for alle som jobber her.",
+    "vocabulary": [
+      { "word": "5S", "explanation": "Et system for å holde orden på jobben." },
+      { "word": "Sorter", "explanation": "Fjerne ting som ikke trengs." },
+      { "word": "Systematiser", "explanation": "Gi ting en fast plass." },
+      { "word": "Skinne", "explanation": "Å gjøre rent og ryddig." },
+      {
+        "word": "Standardiser",
+        "explanation": "Å gjøre ting på samme måte hver gang."
+      },
+      { "word": "Sikre", "explanation": "Å jobbe for å bli bedre." },
+      { "word": "Orden", "explanation": "Når ting er på riktig plass." },
+      { "word": "Effektiv", "explanation": "Å jobbe raskt og bra." }
+    ],
+    "dialogues": [
+      { "speaker": "Leder", "text": "Hvor er den store skrutrekkeren?" },
+      {
+        "speaker": "Arbeider",
+        "text": "Den skal ligge på veggen, merket med blått tape."
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Jeg skal sortere disse delene. Hvor skal jeg kaste de som er ødelagt?"
+      },
+      { "speaker": "Leder", "text": "De skal i søppeldunken for metall." }
+    ],
+    "grammar": [
+      "Bruken av verbet 'skal' for å vise en plan eller en regel.",
+      "Imperativ for å gi en instruksjon: 'Fjern', 'Kast', 'Hold'."
+    ]
+  },
+  {
+    "id": "tema6",
+    "title": "Logistikk og pakking",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2L2 7V17L12 22L22 17V7L12 2Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 16L12 12V8\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 8H12.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "Etter at en armatur er godkjent, skal den pakkes og sendes til kunden. Først skal du plukke riktig produkt fra lageret. Plukklisten forteller deg hvor mange lamper du skal ta. Etterpå skal du finne riktig eske. Du må sjekke at etiketten på esken stemmer med ordrenummeret. Så pakker du armaturen forsiktig. Etter at du har pakket, skal du skrive på en ny etikett med riktig adresse. Til slutt setter du esken på en pall. Pallen er klar for levering. Vi må være nøyaktige når vi pakker. Kunden skal få riktig vare og i god stand. God logistikk gjør kunden fornøyd.",
+    "vocabulary": [
+      {
+        "word": "Logistikk",
+        "explanation": "Organisering av transport og lagring av varer."
+      },
+      { "word": "Pakking", "explanation": "Å legge et produkt i en eske." },
+      { "word": "Plukke", "explanation": "Å ta varer fra en hylle." },
+      {
+        "word": "Etikett",
+        "explanation": "Et klistremerke med informasjon, for eksempel adresse og produktnummer."
+      },
+      {
+        "word": "Emballasje",
+        "explanation": "Materialet som beskytter produktet, for eksempel en eske."
+      },
+      { "word": "Levering", "explanation": "Å sende en vare til kunden." },
+      {
+        "word": "Pall",
+        "explanation": "En flat, tre- eller plastplate som brukes til å transportere varer."
+      },
+      {
+        "word": "Kunde",
+        "explanation": "Personen eller firmaet som kjøper produktet."
+      },
+      {
+        "word": "Ordrenummer",
+        "explanation": "Et unikt nummer for hver bestilling."
+      }
+    ],
+    "dialogues": [
+      {
+        "speaker": "Leder",
+        "text": "Har du pakket alle lampene til ordrenummer 1234?"
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Ja, jeg har sjekket at etikettene er riktige."
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Hvilken eske skal jeg bruke til denne lampen?"
+      },
+      {
+        "speaker": "Kollega",
+        "text": "Du skal bruke den som er merket 'stor armatur'."
+      }
+    ],
+    "grammar": [
+      "Bruken av 'først', 'etterpå' og 'til slutt' for å vise en rekkefølge.",
+      "Substantiver på bestemt form: 'esken', 'pallen', 'etiketten'."
+    ]
+  },
+  {
+    "id": "tema7",
+    "title": "Skift og pauser",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 14H11V16H13V14ZM13 7H11V12H13V7Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "Arbeidsdagen er delt inn i skift. Noen ganger jobber vi dagskift, og noen ganger kveldskift. Det er viktig å komme på jobb til riktig tid. Hvis du blir forsinket, må du ringe og gi beskjed til lederen din. I løpet av arbeidsdagen har vi pauser. Vi har en lunsjpause og noen korte pauser. I pausene kan vi spise, drikke kaffe og snakke med kollegaene våre. Pausene er en del av arbeidsdagen. Det er viktig å hvile og spise. Hvis du er syk, må du gi beskjed til lederen din. Du skal ikke komme på jobb når du er syk.",
+    "vocabulary": [
+      {
+        "word": "Skift",
+        "explanation": "En periode man jobber, for eksempel 'dagskift' eller 'kveldsskift'."
+      },
+      {
+        "word": "Pause",
+        "explanation": "Et lite avbrekk fra jobben for å spise eller hvile."
+      },
+      {
+        "word": "Lunsjpause",
+        "explanation": "Pausen midt på dagen hvor man spiser lunsj."
+      },
+      {
+        "word": "Oppmerksom",
+        "explanation": "Å møte opp til jobben til rett tid."
+      },
+      { "word": "Forsinket", "explanation": "Å komme for sent." },
+      {
+        "word": "Gi beskjed",
+        "explanation": "Å si ifra til noen, for eksempel en leder."
+      },
+      {
+        "word": "Fraværsrutine",
+        "explanation": "Hvordan man skal melde fra om fravær (f.eks. når man er syk)."
+      },
+      {
+        "word": "Leder",
+        "explanation": "Personen som har ansvaret for arbeidet."
+      },
+      {
+        "word": "Syk",
+        "explanation": "Når man ikke føler seg bra og ikke kan jobbe."
+      }
+    ],
+    "dialogues": [
+      { "speaker": "Arbeider", "text": "Hvor lang er lunsjpausen?" },
+      {
+        "speaker": "Leder",
+        "text": "Lunsjpausen er 30 minutter, fra klokken 11:30 til 12:00."
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Jeg er syk i dag. Må jeg ringe lederen min?"
+      },
+      {
+        "speaker": "Leder",
+        "text": "Ja, du skal ringe og gi beskjed før klokken 08:00."
+      }
+    ],
+    "grammar": [
+      "Tidsuttrykk: 'i dag', 'i morgen', 'i går', 'i løpet av'.",
+      "Bruken av 'hvis' og 'når'."
+    ]
+  },
+  {
+    "id": "tema8",
+    "title": "Samarbeid og kommunikasjon",
+    "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 14H11V16H13V14ZM13 7H11V12H13V7Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "text": "God kommunikasjon er viktig for at jobben skal gå bra. Vi jobber sammen som et team. Det betyr at vi hjelper hverandre. Hvis du ikke forstår en instruksjon, må du spørre. Det er bedre å spørre en gang for mye enn å gjøre en feil. Si 'kan du hjelpe meg?' eller 'kan du forklare en gang til?'. Du skal alltid gi klare beskjeder. Ikke snakk for fort, og bruk enkle ord. Vi har ofte korte møter på morgenen. Da snakker vi om hva vi skal gjøre i dag. Alle skal få mulighet til å si sin mening. Et godt samarbeid skaper et godt arbeidsmiljø.",
+    "vocabulary": [
+      {
+        "word": "Kommunikasjon",
+        "explanation": "Å snakke og forstå hverandre."
+      },
+      { "word": "Samarbeid", "explanation": "Å jobbe sammen for å nå et mål." },
+      {
+        "word": "Team",
+        "explanation": "En gruppe mennesker som jobber sammen."
+      },
+      {
+        "word": "Instruksjon",
+        "explanation": "En beskjed som forteller hva man skal gjøre."
+      },
+      { "word": "Spørre", "explanation": "Å stille et spørsmål." },
+      {
+        "word": "Beskjed",
+        "explanation": "En kort melding, for eksempel om et problem."
+      },
+      {
+        "word": "Møte",
+        "explanation": "En samling hvor man snakker om jobben."
+      },
+      {
+        "word": "Arbeidsmiljø",
+        "explanation": "Hvordan det er å jobbe et sted."
+      }
+    ],
+    "dialogues": [
+      {
+        "speaker": "Arbeider",
+        "text": "Kan du hjelpe meg med denne maskinen?"
+      },
+      { "speaker": "Kollega", "text": "Ja, selvfølgelig. Hva er problemet?" },
+      {
+        "speaker": "Leder",
+        "text": "I dag skal vi montere armaturer med lense. Først må vi sjekke lyset."
+      },
+      {
+        "speaker": "Arbeider",
+        "text": "Jeg forstår. Hvilken lense skal vi bruke?"
+      }
+    ],
+    "grammar": [
+      "Bruken av 'hvis', 'må' og 'skal' i setninger.",
+      "Enkle spørsmål og svar: 'Kan du?', 'Ja, selvfølgelig'."
+    ]
+  }
+]

@@ -1,0 +1,507 @@
+[
+  {
+    "topicId": "tema1",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hva betyr 'HMS'?",
+        "options": [
+          { "text": "Hjelp med maskiner og sikkerhet", "value": "A" },
+          {
+            "text": "Helse, miljø og sikkerhet",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "Hvem jobber i dag?", "value": "C" }
+        ]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Vernebriller" },
+          { "id": "B", "text": "Avvik" },
+          { "id": "C", "text": "Vernesko" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "Beskyttelse for øynene dine." },
+          { "id": "B", "text": "Når noe er feil." },
+          { "id": "C", "text": "Sko som beskytter føttene dine." }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett handlingene i riktig rekkefølge.",
+        "items": [
+          { "id": "1", "text": "Ta på verneutstyr." },
+          { "id": "2", "text": "Sjekk utstyret er i orden." },
+          { "id": "3", "text": "Start jobben." }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Ta på verneutstyr." },
+          { "id": "2", "text": "Sjekk utstyret er i orden." },
+          { "id": "3", "text": "Start jobben." }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene fra nøkkelordlista.",
+        "sentence": "Hvis du ser en løs kabel, må du [ _ ] til lederen din. Dette er en [ _ ].",
+        "correctAnswers": ["varsle", "nestenulykke"]
+      },
+      {
+        "type": "Leseforståelse",
+        "question": "Hvorfor er det viktig å melde fra om nestenulykker?",
+        "options": [
+          { "text": "Fordi det er morsomt.", "value": "A" },
+          {
+            "text": "For å unngå en ekte ulykke senere.",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "Fordi vi må betale en bot.", "value": "C" }
+        ]
+      }
+    ]
+  },
+  {
+    "topicId": "tema2",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hva kan statisk elektrisitet gjøre med elektronikken?",
+        "options": [
+          { "text": "Gjøre den raskere", "value": "A" },
+          { "text": "Skade den", "value": "B", "isCorrect": true },
+          { "text": "Gi den lys", "value": "C" }
+        ]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Antistatisk armbånd" },
+          { "id": "B", "text": "Jording" },
+          { "id": "C", "text": "Følsom" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "Et armbånd som fjerner statisk strøm." },
+          { "id": "B", "text": "Kobling til bakken for å lede bort strøm." },
+          { "id": "C", "text": "En ting som lett blir ødelagt." }
+        ]
+      },
+      {
+        "type": "Dra-og-slipp",
+        "question": "Dra de riktige ESD-rutinene til den grønne sonen.",
+        "items": [
+          { "text": "Bruk antistatisk armbånd", "isCorrect": true },
+          { "text": "Ha på vanlige sko", "isCorrect": false },
+          { "text": "Arbeid på antistatisk matte", "isCorrect": true },
+          { "text": "Legg komponenter i beskyttende pose", "isCorrect": true }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett ESD-rutinene i riktig rekkefølge.",
+        "items": [
+          { "id": "1", "text": "Ta på antistatisk armbånd." },
+          { "id": "2", "text": "Koble armbåndet til jording." },
+          { "id": "3", "text": "Start jobben med elektronikken." }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Ta på antistatisk armbånd." },
+          { "id": "2", "text": "Koble armbåndet til jording." },
+          { "id": "3", "text": "Start jobben med elektronikken." }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene fra teksten.",
+        "sentence": "Du skal aldri ha på [ _ ] sko i et [ _ ]-område.",
+        "correctAnswers": ["vanlige", "ESD"]
+      }
+    ]
+  },
+  {
+    "topicId": "tema3",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hva skal du gjøre før du monterer en armatur?",
+        "options": [
+          {
+            "text": "Plukke de riktige delene",
+            "value": "A",
+            "isCorrect": true
+          },
+          { "text": "Spise lunsj", "value": "B" },
+          { "text": "Ringe en venn", "value": "C" }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett produksjonstrinnene i riktig rekkefølge.",
+        "items": [
+          { "id": "1", "text": "Plukke deler fra hyllene." },
+          { "id": "2", "text": "Følge tegningen for montering." },
+          { "id": "3", "text": "Sjekke at alt er riktig." }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Plukke deler fra hyllene." },
+          { "id": "2", "text": "Følge tegningen for montering." },
+          { "id": "3", "text": "Sjekke at alt er riktig." }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene fra teksten.",
+        "sentence": "Du skal bruke [ _ ] til å sette sammen delene. Hver del har en fast [ _ ] i produktet.",
+        "correctAnswers": ["verktøy", "plass"]
+      },
+      {
+        "type": "Leseforståelse",
+        "question": "Hva er en 'armatur'?",
+        "options": [
+          { "text": "En skrutrekker", "value": "A" },
+          { "text": "En komplett lampe", "value": "B", "isCorrect": true },
+          { "text": "En liten del", "value": "C" }
+        ]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Montere" },
+          { "id": "B", "text": "Tegning" },
+          { "id": "C", "text": "Verktøy" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "Å sette sammen deler." },
+          { "id": "B", "text": "Et bilde som viser hvordan man skal montere." },
+          { "id": "C", "text": "Redskap for å jobbe." }
+        ]
+      }
+    ]
+  },
+  {
+    "topicId": "tema4",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hva betyr det at en armatur er 'godkjent'?",
+        "options": [
+          { "text": "At den er ødelagt", "value": "A" },
+          {
+            "text": "At den er klar for pakking",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "At den må fikses", "value": "C" }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett trinnene for testing i riktig rekkefølge.",
+        "items": [
+          { "id": "1", "text": "Se på lampen." },
+          { "id": "2", "text": "Koble lampen til strøm." },
+          { "id": "3", "text": "Sette et 'godkjent'-merke på armaturen." }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Se på lampen." },
+          { "id": "2", "text": "Koble lampen til strøm." },
+          { "id": "3", "text": "Sette et 'godkjent'-merke på armaturen." }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene.",
+        "sentence": "Hvis lyset [ _ ], er det et problem. Du må fylle ut en [ _ ] hvis noe er feil.",
+        "correctAnswers": ["flimrer", "feilmelding"]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Teste" },
+          { "id": "B", "text": "Ripe" },
+          { "id": "C", "text": "Høy kvalitet" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "Å prøve om noe virker." },
+          { "id": "B", "text": "Et merke på overflaten." },
+          { "id": "C", "text": "At et produkt er veldig bra." }
+        ]
+      },
+      {
+        "type": "Leseforståelse",
+        "question": "Hva skal du gjøre hvis en skrue er løs?",
+        "options": [
+          { "text": "Sette den i en eske.", "value": "A" },
+          { "text": "Levere den til kunden.", "value": "B" },
+          {
+            "text": "Fylle ut en feilmelding.",
+            "value": "C",
+            "isCorrect": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "topicId": "tema5",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hva betyr 'Sorter' i 5S-systemet?",
+        "options": [
+          { "text": "Å kaste søppel", "value": "A", "isCorrect": true },
+          { "text": "Å gjøre rent", "value": "B" },
+          { "text": "Å gi ting en fast plass", "value": "C" }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett de 5 S'ene i riktig rekkefølge.",
+        "items": [
+          { "id": "1", "text": "Sorter" },
+          { "id": "2", "text": "Systematiser" },
+          { "id": "3", "text": "Skinne" },
+          { "id": "4", "text": "Standardiser" },
+          { "id": "5", "text": "Sikre" }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Sorter" },
+          { "id": "2", "text": "Systematiser" },
+          { "id": "3", "text": "Skinne" },
+          { "id": "4", "text": "Standardiser" },
+          { "id": "5", "text": "Sikre" }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene.",
+        "sentence": "En [ _ ] arbeidsplass er en trygg og [ _ ] arbeidsplass.",
+        "correctAnswers": ["ryddig", "effektiv"]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Systematiser" },
+          { "id": "B", "text": "Skinne" },
+          { "id": "C", "text": "Sikre" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "Gi ting en fast plass." },
+          { "id": "B", "text": "Gjøre rent og ryddig." },
+          { "id": "C", "text": "Jobbe for å bli bedre." }
+        ]
+      },
+      {
+        "type": "Leseforståelse",
+        "question": "Hva er målet med 5S?",
+        "options": [
+          { "text": "Å spise mat sammen.", "value": "A" },
+          {
+            "text": "Å holde orden på arbeidsplassen.",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "Å fjerne alle maskiner.", "value": "C" }
+        ]
+      }
+    ]
+  },
+  {
+    "topicId": "tema6",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hva må du sjekke før du pakker en lampe?",
+        "options": [
+          { "text": "At den har en ripe.", "value": "A" },
+          {
+            "text": "At etiketten stemmer med ordrenummeret.",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "At den er blå.", "value": "C" }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett logistikktrinnene i riktig rekkefølge.",
+        "items": [
+          { "id": "1", "text": "Plukke produktet." },
+          { "id": "2", "text": "Finne riktig eske." },
+          { "id": "3", "text": "Skrive på en ny etikett." }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Plukke produktet." },
+          { "id": "2", "text": "Finne riktig eske." },
+          { "id": "3", "text": "Skrive på en ny etikett." }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene.",
+        "sentence": "En [ _ ] har et unikt nummer for hver bestilling. Vi må være [ _ ] når vi pakker.",
+        "correctAnswers": ["ordre", "nøyaktige"]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Levering" },
+          { "id": "B", "text": "Etikett" },
+          { "id": "C", "text": "Kunde" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "Å sende en vare til kunden." },
+          { "id": "B", "text": "Et klistremerke med informasjon." },
+          { "id": "C", "text": "Den som kjøper produktet." }
+        ]
+      },
+      {
+        "type": "Leseforståelse",
+        "question": "Hvorfor er god logistikk viktig?",
+        "options": [
+          { "text": "Fordi det er kjedelig.", "value": "A" },
+          {
+            "text": "Fordi det gjør kunden fornøyd.",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "Fordi vi sparer penger.", "value": "C" }
+        ]
+      }
+    ]
+  },
+  {
+    "topicId": "tema7",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hva skal du gjøre hvis du er syk?",
+        "options": [
+          { "text": "Dra på jobb.", "value": "A" },
+          {
+            "text": "Gi beskjed til lederen din.",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "Spise lunsj hjemme.", "value": "C" }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene.",
+        "sentence": "Hvis du kommer for sent, er du [ _ ]. Du må ringe og gi [ _ ] til lederen din.",
+        "correctAnswers": ["forsinket", "beskjed"]
+      },
+      {
+        "type": "Leseforståelse",
+        "question": "Hva gjør du i lunsjpausen?",
+        "options": [
+          { "text": "Tester lamper.", "value": "A" },
+          { "text": "Spiser og hviler.", "value": "B", "isCorrect": true },
+          { "text": "Pakker varer.", "value": "C" }
+        ]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Skift" },
+          { "id": "B", "text": "Pause" },
+          { "id": "C", "text": "Fraværsrutine" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "En periode man jobber." },
+          { "id": "B", "text": "Et lite avbrekk fra jobben." },
+          { "id": "C", "text": "Hvordan man melder fra om fravær." }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett handlingene i riktig rekkefølge for en forsinkelse.",
+        "items": [
+          { "id": "1", "text": "Du ser klokken og er forsinket." },
+          { "id": "2", "text": "Du ringer lederen din." },
+          { "id": "3", "text": "Du gir beskjed om at du er sen." }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Du ser klokken og er forsinket." },
+          { "id": "2", "text": "Du ringer lederen din." },
+          { "id": "3", "text": "Du gir beskjed om at du er sen." }
+        ]
+      }
+    ]
+  },
+  {
+    "topicId": "tema8",
+    "tasks": [
+      {
+        "type": "Leseforståelse",
+        "question": "Hvorfor skal du spørre hvis du ikke forstår en instruksjon?",
+        "options": [
+          { "text": "Fordi det er morsomt.", "value": "A" },
+          {
+            "text": "Fordi det er bedre enn å gjøre en feil.",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "Fordi du ikke liker å jobbe alene.", "value": "C" }
+        ]
+      },
+      {
+        "type": "Fyll-inn-tomrom",
+        "question": "Fyll inn de riktige ordene.",
+        "sentence": "Vi jobber sammen som et [ _ ]. God [ _ ] er viktig for at jobben skal gå bra.",
+        "correctAnswers": ["team", "kommunikasjon"]
+      },
+      {
+        "type": "Match begrep-forklaring",
+        "question": "Match ordene med riktig forklaring.",
+        "terms": [
+          { "id": "A", "text": "Team" },
+          { "id": "B", "text": "Instruksjon" },
+          { "id": "C", "text": "Arbeidsmiljø" }
+        ],
+        "explanations": [
+          { "id": "A", "text": "En gruppe som jobber sammen." },
+          { "id": "B", "text": "En beskjed som forteller hva du skal gjøre." },
+          { "id": "C", "text": "Hvordan det er å jobbe et sted." }
+        ]
+      },
+      {
+        "type": "Leseforståelse",
+        "question": "Hva er en 'klar beskjed'?",
+        "options": [
+          { "text": "En lang historie om noe.", "value": "A" },
+          {
+            "text": "En enkel beskjed som alle forstår.",
+            "value": "B",
+            "isCorrect": true
+          },
+          { "text": "En beskjed du ikke liker.", "value": "C" }
+        ]
+      },
+      {
+        "type": "Sorter rekkefølge",
+        "question": "Sett kommunikasjonstrinnene i riktig rekkefølge.",
+        "items": [
+          { "id": "1", "text": "Lederen gir en instruksjon." },
+          { "id": "2", "text": "Du forstår ikke alt." },
+          { "id": "3", "text": "Du spør en kollega om hjelp." }
+        ],
+        "correctOrder": [
+          { "id": "1", "text": "Lederen gir en instruksjon." },
+          { "id": "2", "text": "Du forstår ikke alt." },
+          { "id": "3", "text": "Du spør en kollega om hjelp." }
+        ]
+      }
+    ]
+  }
+]
