@@ -38,7 +38,6 @@ export function setupA11y() {
       themeToggleBtn.setAttribute("aria-pressed", String(dark));
     };
     themeToggleBtn.addEventListener("click", () => {
-      // Toggle specific classes, don't nuke other classes on body.
       document.body.classList.toggle("theme-dark");
       document.body.classList.toggle("theme-light", !document.body.classList.contains("theme-dark"));
 
@@ -98,7 +97,6 @@ export function setupA11y() {
     const activeEl = document.activeElement;
     if (!activeEl) return;
 
-    // Space toggles "grab" for .match-item / .sortable-item / .drag-item
     if (e.key === " " && (activeEl.classList.contains("match-item") ||
                           activeEl.classList.contains("sortable-item") ||
                           activeEl.classList.contains("drag-item"))) {
@@ -108,15 +106,12 @@ export function setupA11y() {
       announce(!grabbed ? "Element valgt." : "Element sluppet.");
     }
 
-    // Enter tries to drop onto focused target-item or drop-zone
     if (e.key === "Enter" && (activeEl.classList.contains("target-item") || activeEl.classList.contains("drop-zone"))) {
-      // Find last grabbed item within the same task-card
       const card = activeEl.closest(".task-card");
       if (!card) return;
       const grabbedItem = card.querySelector('.match-item[aria-grabbed="true"], .sortable-item[aria-grabbed="true"], .drag-item[aria-grabbed="true"]');
       if (!grabbedItem) return;
 
-      // Fire a synthetic drop event like the pointer version expects
       const event = new CustomEvent("drop", {
         detail: { keyboard: true, source: grabbedItem },
         bubbles: true,
@@ -136,7 +131,6 @@ export function setupA11y() {
  */
 function applyTextSize(size) {
   const clamped = clamp(size, 0.9, 2);
-  // Update CSS variable consumed by body { font-size: var(--text-base); }
   document.documentElement.style.setProperty("--text-base", `${clamped}rem`);
   localStorage.setItem("textSize", String(clamped));
   if (window.appData?.settings) window.appData.settings.textSize = clamped;
@@ -149,18 +143,13 @@ function applyTextSize(size) {
  */
 export function applySettings(settings) {
   const body = document.body;
-
-  // Remove only theme/contrast classes we manage
   body.classList.remove("theme-dark", "theme-light", "high-contrast");
 
-  // Theme
   if (settings.theme === "dark") body.classList.add("theme-dark");
   else body.classList.add("theme-light");
 
-  // High contrast
   if (settings.highContrast) body.classList.add("high-contrast");
 
-  // Text size
   applyTextSize(Number(settings.textSize ?? 1));
 }
 
