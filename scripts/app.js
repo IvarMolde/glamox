@@ -1,5 +1,5 @@
 import { setupRouter, handleRouteChange } from "./router.js";
-import { loadTopics, loadQuizzes } from "./storage.js";
+import { loadTopics, loadQuizzes } from "./data.js";
 import { setupA11y, applySettings } from "./a11y.js";
 
 /**
@@ -41,5 +41,6 @@ async function initializeApp() {
 
 // Start the application when the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", initializeApp);
+
 
 
