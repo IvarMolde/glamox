@@ -1,46 +1,54 @@
+// scripts/app.js
 import { setupRouter, handleRouteChange } from "./router.js";
 import { loadTopics, loadQuizzes } from "./data.js";
 import { setupA11y, applySettings } from "./a11y.js";
 
 /**
- * The main application entry point.
- * Initializes the app by loading data, setting up accessibility features,
- * and configuring the router.
+ * Starter hele appen:
+ *  - Laster data (topics + quizzes)
+ *  - Setter brukerinnstillinger (tema, tekststørrelse, kontrast)
+ *  - Setter opp tilgjengelighet (a11y)
+ *  - Starter router og rendrer første visning
  */
 async function initializeApp() {
-  // Load content and quizzes from JSON files.
-  // This simulates a database for the static site.
-  const topics = await loadTopics();
-  const quizzes = await loadQuizzes();
+  try {
+    // 1) Last data
+    const [topics, quizzes] = await Promise.all([loadTopics(), loadQuizzes()]);
 
-  // Make the data globally accessible for other modules.
-  // In a larger app, this would be a state management system.
-  window.appData = {
-    topics,
-    quizzes,
-    settings: {
-      theme: localStorage.getItem("theme") || "light",
-      textSize: parseFloat(localStorage.getItem("textSize")) || 1,
-      highContrast: localStorage.getItem("highContrast") === "true",
-    },
-    userProgress: JSON.parse(localStorage.getItem("userProgress")) || {},
-  };
+    // 2) Global app-state (enkelt)
+    window.appData = {
+      topics: Array.isArray(topics) ? topics : [],
+      quizzes: Array.isArray(quizzes) ? quizzes : [],
+      settings: {
+        theme: localStorage.getItem("theme") || "light",
+        textSize: parseFloat(localStorage.getItem("textSize")) || 1,
+        highContrast: localStorage.getItem("highContrast") === "true",
+      },
+      userProgress: JSON.parse(localStorage.getItem("userProgress") || "{}"),
+    };
 
-  // Apply saved settings
-  applySettings(window.appData.settings);
+    // 3) Bruk lagrede innstillinger
+    applySettings(window.appData.settings);
 
-  // Set up accessibility and user interface interactions.
-  setupA11y();
+    // 4) Tilgjengelighet / UI-knapper (tema, tekststørrelse, meny)
+    setupA11y();
 
-  // Set up the hash-based router.
-  setupRouter(handleRouteChange);
-
-  // Initial page load based on URL hash.
-  handleRouteChange();
+    // 5) Router
+    setupRouter(handleRouteChange);
+    handleRouteChange(); // første render basert på hash
+  } catch (err) {
+    console.error("[initializeApp] Klarte ikke å starte appen:", err);
+    const view = document.getElementById("content-view") || document.getElementById("app-container");
+    if (view) {
+      view.innerHTML = `
+        <div class="content-area">
+          <h2>Teknisk feil</h2>
+          <p>Beklager, noe gikk galt under oppstart. Prøv å laste siden på nytt.</p>
+        </div>
+      `;
+    }
+  }
 }
 
-// Start the application when the DOM is fully loaded.
+// Kjør når DOM er klar
 document.addEventListener("DOMContentLoaded", initializeApp);
-
-
-
