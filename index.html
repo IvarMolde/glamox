@@ -61,12 +61,20 @@
       </div>
     </header>
 
-    <main id="app-container" role="main">
-  <section id="content-view"></section>   <!-- <- hit skal innhold skrives -->
-  <aside id="vocab-panel">...</aside>
+   <main id="app-container" role="main">
+  <section id="content-view"><!-- Content lastes av JavaScript --></section>
+
+  <aside id="vocab-panel" class="vocab-panel" role="complementary" aria-labelledby="vocab-title" hidden>
+    <div class="panel-header">
+      <h2 id="vocab-title">Nøkkelord</h2>
+      <button id="close-vocab-btn" aria-label="Lukk ordliste">&times;</button>
+    </div>
+    <div id="vocab-content" class="panel-content"></div>
+  </aside>
 </main>
   </body>
 </html>
+
 
 
 
