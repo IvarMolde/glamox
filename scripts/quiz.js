@@ -450,7 +450,11 @@ function setupDragAndDrop() {
         }
       });
     });
-  });
+list.addEventListener("dragenter", () => list.classList.add("drop-target"));
+list.addEventListener("dragleave", () => list.classList.remove("drop-target"));
+list.addEventListener("drop", () => list.classList.remove("drop-target"));
+list.addEventListener("dragend", () => list.classList.remove("drop-target"));
+
 
   // ====== Sortering innenfor samme UL for "Sorter rekkefølge" ======
   document.querySelectorAll(".sortable-list").forEach((list) => {
@@ -491,4 +495,5 @@ function getDragAfterElement(container, y) {
     }
   }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
 }
+
 
