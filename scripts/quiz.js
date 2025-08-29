@@ -13,7 +13,6 @@ export function renderHome() {
   const vocabPanel = el("vocab-panel");
   if (!view) return;
 
-  // Skjul ordliste på forsiden
   if (vocabPanel) vocabPanel.hidden = true;
 
   const topics = Array.isArray(window.appData?.topics) ? window.appData.topics : [];
@@ -195,12 +194,21 @@ function renderQuizzes(tasks, topicId) {
         break;
 
       case "Fyll-inn-tomrom":
+        // Lag inputer
         html += `<p>${
           task.sentence.replace(
             /\[_\]/g,
             `<input type="text" class="cloze-input" aria-label="Fyll inn riktig ord">`
           )
         }</p>`;
+        // Ordbank (valgfri)
+        if (task.wordBank && task.wordBank.length > 0) {
+          html += `
+            <div class="word-bank" role="group" aria-label="Velg ord">
+              ${task.wordBank.map((w) => `<button type="button" class="word-btn">${w}</button>`).join(" ")}
+            </div>
+          `;
+        }
         break;
 
       case "Dra-og-slipp":
@@ -243,6 +251,24 @@ function renderQuizzes(tasks, topicId) {
       const solutionBtn = card.querySelector(".solution-btn");
       const taskId = parseInt(card.dataset.taskId, 10);
 
+      // Ordbank -> fyll inn i inputs (kun for "Fyll-inn-tomrom")
+      const task = tasks[taskId];
+      if (task?.type === "Fyll-inn-tomrom") {
+        const wordBtns = card.querySelectorAll(".word-bank .word-btn");
+        const inputs = card.querySelectorAll(".cloze-input");
+        let fillIndex = 0;
+
+        wordBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            if (inputs[fillIndex]) {
+              inputs[fillIndex].value = btn.textContent.trim();
+              inputs[fillIndex].focus();
+              fillIndex = (fillIndex + 1) % inputs.length;
+            }
+          });
+        });
+      }
+
       checkBtn.addEventListener("click", () => {
         const task = tasks[taskId];
         let isCorrect = false;
@@ -266,24 +292,14 @@ function renderQuizzes(tasks, topicId) {
             });
             break;
           }
-         case "Fyll-inn-tomrom":
-  html += `<p>${
-    task.sentence.replace(
-      /\[_\]/g,
-      `<input type="text" class="cloze-input" aria-label="Fyll inn riktig ord">`
-    )
-  }</p>`;
-
-  // Ordbank-knapper (valgfritt felt i JSON)
-  if (task.wordBank && task.wordBank.length > 0) {
-    html += `
-      <div class="word-bank" role="group" aria-label="Velg ord">
-        ${task.wordBank.map((w) => `<button type="button" class="word-btn">${w}</button>`).join(" ")}
-      </div>
-    `;
-  }
-  break;
-
+          case "Fyll-inn-tomrom": {
+            const inputs = card.querySelectorAll(".cloze-input");
+            isCorrect = Array.from(inputs).every(
+              (input, i) =>
+                input.value.trim().toLowerCase() ===
+                task.correctAnswers[i].toLowerCase()
+            );
+            break;
           }
           case "Sorter rekkefølge": {
             const sortedItems = Array.from(card.querySelectorAll(".sortable-item"));
@@ -336,11 +352,10 @@ function renderQuizzes(tasks, topicId) {
       retryBtn.addEventListener("click", () => {
         userAttempts.attempts[taskId] = 0;
         saveUserProgress(topicId, userAttempts);
-        // Tegn akkurat dette kortet på nytt
         const html = renderTask(tasks[taskId], taskId);
         card.outerHTML = html;
-        bindAllTaskListeners(); // rebind for nye elementer
-        setupDragAndDrop();     // rebind DnD
+        bindAllTaskListeners();
+        setupDragAndDrop();
       });
 
       solutionBtn.addEventListener("click", () => {
@@ -423,7 +438,6 @@ function updateProgressBar() {
 function setupDragAndDrop() {
   let draggedItem = null;
 
-  // Per oppgave-kort
   document.querySelectorAll(".task-card").forEach((card) => {
     const dragItems = card.querySelectorAll('[draggable="true"]');
     const dropZones = card.querySelectorAll("[data-drop-target], .drop-zone");
@@ -464,13 +478,11 @@ function setupDragAndDrop() {
 
     // Sortering innenfor samme UL for "Sorter rekkefølge"
     card.querySelectorAll(".sortable-list").forEach((list) => {
-      // visuell markering når man drar over lista
       list.addEventListener("dragenter", () => list.classList.add("drop-target"));
       list.addEventListener("dragleave", () => list.classList.remove("drop-target"));
       list.addEventListener("drop", () => list.classList.remove("drop-target"));
       list.addEventListener("dragend", () => list.classList.remove("drop-target"));
 
-      // re-order logikk
       list.addEventListener("dragover", (e) => {
         e.preventDefault();
         const afterEl = getDragAfterElement(list, e.clientY);
@@ -484,7 +496,6 @@ function setupDragAndDrop() {
         }
       });
 
-      // gjør hvert punkt draggable med feedback
       list.querySelectorAll(".sortable-item").forEach((item) => {
         item.addEventListener("dragstart", (e) => {
           e.dataTransfer.setData("text/plain", "reorder");
@@ -514,4 +525,3 @@ function getDragAfterElement(container, y) {
     { offset: Number.NEGATIVE_INFINITY, element: null }
   ).element;
 }
-
