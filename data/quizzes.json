@@ -40,11 +40,13 @@
         ]
       },
       {
-        "type": "Fyll-inn-tomrom",
-        "question": "Fyll inn de riktige ordene fra nøkkelordlista.",
-        "sentence": "Hvis du ser en løs kabel, må du [_] til lederen din. Dette er en [_].",
-        "correctAnswers": ["varsle", "nestenulykke"]
-      },
+  "type": "Fyll-inn-tomrom",
+  "question": "Fyll inn de riktige ordene fra nøkkelordlista.",
+  "sentence": "Hvis du ser en løs kabel, må du [_] til lederen din. Dette er en [_].",
+  "correctAnswers": ["varsle", "nestenulykke"],
+  "wordBank": ["varsle", "nestenulykke", "arbeid", "lampe", "verktøy"]
+},
+
       {
         "type": "Leseforståelse",
         "question": "Hvorfor er det viktig å melde fra om nestenulykker?",
@@ -461,3 +463,4 @@
     ]
   }
 ]
+
