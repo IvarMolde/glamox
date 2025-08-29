@@ -1,66 +1,72 @@
-[
-  {
-    "topicId": "1",
-    "tasks": [
-      {
-        "type": "Leseforståelse",
-        "question": "Hvor skal en pizzakartong som er tørr og ren kastes?",
-        "options": [
-          { "value": "A", "text": "Papp og kartong", "isCorrect": true },
-          { "value": "B", "text": "Restavfall", "isCorrect": false },
-          { "value": "C", "text": "Matavfall", "isCorrect": false }
-        ]
-      },
-      {
-        "type": "Leseforståelse",
-        "question": "Hva gjør du hvis du ser en løs kabel?",
-        "options": [
-          { "value": "A", "text": "Ignorerer den", "isCorrect": false },
-          { "value": "B", "text": "Varsler lederen din med en gang", "isCorrect": true },
-          { "value": "C", "text": "Tar bilde og venter til i morgen", "isCorrect": false }
-        ]
-      },
-      {
-        "type": "Match begrep-forklaring",
-        "question": "Dra begrepet til riktig avfallsfraksjon.",
-        "terms": [
-          { "id": "t1", "text": "Batterier" },
-          { "id": "t2", "text": "Aviser" },
-          { "id": "t3", "text": "Myk plastfolie" },
-          { "id": "t4", "text": "Kaffegrut" },
-          { "id": "t5", "text": "Isopor (EPS)" }
-        ],
-        "explanations": [
-          { "id": "t1", "text": "Batterier" },
-          { "id": "t2", "text": "Papir" },
-          { "id": "t3", "text": "Plastemballasje" },
-          { "id": "t4", "text": "Matavfall" },
-          { "id": "t5", "text": "Egen EPS-beholder (resten i restavfall)" }
-        ]
-      },
-      {
-        "type": "Fyll-inn-tomrom",
-        "question": "Fyll inn riktig ord fra ord­banken.",
-        "sentence": "Tomme spraybokser og tynner skal leveres som [_].",
-        "correctAnswers": ["farlig avfall"],
-        "wordBank": ["restavfall", "matavfall", "farlig avfall", "papir", "papp"]
-      },
-      {
-        "type": "Sorter rekkefølge",
-        "question": "Sett handlingene i riktig rekkefølge før du starter jobben.",
-        "items": [
-          { "text": "Sjekk utstyret er i orden." },
-          { "text": "Ta på verneutstyr." },
-          { "text": "Start jobben." }
-        ],
-        "correctOrder": [
-          { "id": "1", "text": "Ta på verneutstyr." },
-          { "id": "2", "text": "Sjekk utstyret er i orden." },
-          { "id": "3", "text": "Start jobben." }
-        ]
-      }
-    ]
-  },
+{
+  "topicId": "1",
+  "tasks": [
+    {
+      "type": "Leseforståelse",
+      "question": "Se på bildet av avfallshåndtering og teksten om HMS. Svar på spørsmålene.",
+      "options": [
+        { "text": "Det er viktig å kaste avfall riktig", "isCorrect": true, "value": "riktig" },
+        { "text": "Avfall kan ligge hvor som helst", "isCorrect": false, "value": "feil" },
+        { "text": "Man skal aldri sortere søppel", "isCorrect": false, "value": "feil" }
+      ]
+    },
+    {
+      "type": "Match begrep-forklaring",
+      "question": "Match begrepene med riktig forklaring.",
+      "terms": [
+        { "id": "1", "text": "Hjelm" },
+        { "id": "2", "text": "Vernebriller" },
+        { "id": "3", "text": "Vernesko" },
+        { "id": "4", "text": "Hansker" },
+        { "id": "5", "text": "Varsle" }
+      ],
+      "explanations": [
+        { "id": "1", "text": "Beskytter hodet" },
+        { "id": "2", "text": "Beskytter øynene" },
+        { "id": "3", "text": "Beskytter føttene" },
+        { "id": "4", "text": "Beskytter hendene" },
+        { "id": "5", "text": "Si ifra til leder" }
+      ]
+    },
+    {
+      "type": "Sorter rekkefølge",
+      "question": "Sett sikkerhetsrutinene i riktig rekkefølge.",
+      "items": [
+        { "id": "1", "text": "Ta på verneutstyr." },
+        { "id": "2", "text": "Sjekk at utstyret er i orden." },
+        { "id": "3", "text": "Start jobben." },
+        { "id": "4", "text": "Observer farer." },
+        { "id": "5", "text": "Varsle om avvik." }
+      ],
+      "correctOrder": [
+        { "id": "1", "text": "Ta på verneutstyr." },
+        { "id": "2", "text": "Sjekk at utstyret er i orden." },
+        { "id": "4", "text": "Observer farer." },
+        { "id": "5", "text": "Varsle om avvik." },
+        { "id": "3", "text": "Start jobben." }
+      ]
+    },
+    {
+      "type": "Fyll-inn-tomrom",
+      "question": "Fyll inn de riktige ordene fra ordlisten.",
+      "sentence": "Alle arbeidere må bruke [_] på hodet, [_] på føttene, og [_] for øynene. Hvis man ser en fare, må man [_] lederen sin.",
+      "correctAnswers": ["hjelm", "vernesko", "vernebriller", "varsle"],
+      "wordBank": ["hjelm", "vernesko", "vernebriller", "varsle", "matpakke"]
+    },
+    {
+      "type": "Dra-og-slipp",
+      "question": "Dra rutinene til riktig plass: riktige eller gale rutiner.",
+      "items": [
+        { "text": "Bruke hjelm", "isCorrect": true },
+        { "text": "Ignorere nestenulykker", "isCorrect": false },
+        { "text": "Bruke vernebriller", "isCorrect": true },
+        { "text": "Varsle lederen ved avvik", "isCorrect": true },
+        { "text": "Jobbe uten vernesko", "isCorrect": false }
+      ]
+    }
+  ]
+}
+
 
   {
     "topicId": "2",
@@ -325,3 +331,4 @@
     ]
   }
 ]
+
