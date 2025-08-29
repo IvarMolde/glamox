@@ -475,4 +475,38 @@ main {
   }
 }
 .sortable-item.dragging { opacity: .7; }
+/* --- Sorter rekkefølge: visuell dra-effekt --- */
+.sortable-item {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 3px var(--color-shadow);
+  cursor: grab;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.sortable-item:hover,
+.sortable-item:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 4px 10px var(--color-shadow);
+}
+
+.sortable-item.dragging {
+  cursor: grabbing;
+  background-color: rgba(0,0,0,0.02);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+  transform: scale(1.02);
+}
+
+/* Valgfritt: gjør selve lista mer «drop-vennlig» */
+.sortable-list.drop-target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 6px;
+  border-radius: 12px;
+  padding: 6px;
+}
+
 
