@@ -3,6 +3,20 @@
     "id": "1",
     "title": "HMS og verneutstyr",
     "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><path d=\"M12 2L2 7V17L12 22L22 17V7L12 2Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 16L12 12V8\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 8H12.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "hero": {
+  "src": "assets/avfall.jpg",
+  "alt": "Plakater om kildesortering og avfallssymboler på veggen."
+},
+"symbols": [
+  { "src": "assets/papir.png",      "label": "Papir",      "description": "Papir og papp kastes her." },
+  { "src": "assets/metall.png",     "label": "Metall",     "description": "Bokser, aluminiumsfolie m.m." },
+  { "src": "assets/glass.png",      "label": "Glass",      "description": "Glass og flasker uten pant." },
+  { "src": "assets/hvitplast.png",  "label": "Plast",      "description": "Ren plastemballasje." },
+  { "src": "assets/matavfall.png",  "label": "Matavfall",  "description": "Matrester og biologisk avfall." },
+  { "src": "assets/restavfall.png", "label": "Restavfall", "description": "Det som ikke kan sorteres." },
+  { "src": "assets/ee-avfall.png",  "label": "EE-avfall",  "description": "Elektrisk/elektronisk avfall." },
+  { "src": "assets/batteri.png",    "label": "Batteri",    "description": "Brukte batterier leveres her." }
+]
     "text": "På fabrikken er sikkerhet det viktigste. Vi passer på oss selv og kollegaene våre. Alle som jobber her, må alltid bruke verneutstyr. Det betyr hjelm, vernesko og vernebriller. Noen ganger må vi også bruke hørselvern. Før du starter jobben, må du sjekke at utstyret er i orden. Hvis du ser noe som ikke er trygt, må du si ifra til lederen din med en gang. Dette kaller vi et avvik. Hvis nesten noe dårlig skjedde, er det en nestenulykke. Vi må melde fra om alle nestenulykker. Det er viktig. Vi skal lære av feil for å unngå ulykker. Arbeidsplassen skal være trygg for alle.",
     "vocabulary": [
       { "word": "HMS", "explanation": "Helse, miljø og sikkerhet. Regler for å jobbe trygt." },
@@ -286,3 +300,4 @@
     ]
   }
 ]
+
