@@ -266,14 +266,24 @@ function renderQuizzes(tasks, topicId) {
             });
             break;
           }
-          case "Fyll-inn-tomrom": {
-            const inputs = card.querySelectorAll(".cloze-input");
-            isCorrect = Array.from(inputs).every(
-              (input, i) =>
-                input.value.trim().toLowerCase() ===
-                task.correctAnswers[i].toLowerCase()
-            );
-            break;
+         case "Fyll-inn-tomrom":
+  html += `<p>${
+    task.sentence.replace(
+      /\[_\]/g,
+      `<input type="text" class="cloze-input" aria-label="Fyll inn riktig ord">`
+    )
+  }</p>`;
+
+  // Ordbank-knapper (valgfritt felt i JSON)
+  if (task.wordBank && task.wordBank.length > 0) {
+    html += `
+      <div class="word-bank" role="group" aria-label="Velg ord">
+        ${task.wordBank.map((w) => `<button type="button" class="word-btn">${w}</button>`).join(" ")}
+      </div>
+    `;
+  }
+  break;
+
           }
           case "Sorter rekkefølge": {
             const sortedItems = Array.from(card.querySelectorAll(".sortable-item"));
@@ -504,3 +514,4 @@ function getDragAfterElement(container, y) {
     { offset: Number.NEGATIVE_INFINITY, element: null }
   ).element;
 }
+
