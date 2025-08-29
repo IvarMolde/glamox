@@ -389,6 +389,21 @@ main {
   height: 100%;
   border: 0;
 }
+/* === Logo-tilpasning === */
+.brand-logo {
+  height: 40px;         /* standard høyde */
+  width: auto;
+  max-height: 50px;     /* aldri større enn dette */
+  object-fit: contain;  /* bevar proporsjoner */
+}
+
+@media (max-width: 480px) {
+  .brand-logo {
+    height: 32px;       /* litt mindre på mobil */
+    max-height: 36px;
+  }
+}
+
 
 
 
