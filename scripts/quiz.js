@@ -1,9 +1,8 @@
 // scripts/quiz.js
 import { saveUserProgress, getUserProgress } from "./storage.js";
 
-// Helper: hent element
+/* Helpers */
 const el = (id) => document.getElementById(id);
-// Helper: prosent uten NaN
 const pct = (num, den) => (den > 0 ? (num / den) * 100 : 0);
 
 /* =========================
@@ -17,8 +16,8 @@ export function renderHome() {
   // Skjul ordliste på forsiden
   if (vocabPanel) vocabPanel.hidden = true;
 
-  // Tell fullførte tema
-  const totalTopics = Array.isArray(window.appData?.topics) ? window.appData.topics.length : 0;
+  const topics = Array.isArray(window.appData?.topics) ? window.appData.topics : [];
+  const totalTopics = topics.length;
   const progress = getUserProgress();
   const completedTopics = Object.values(progress || {}).filter((t) => t?.completed).length;
 
@@ -45,18 +44,17 @@ export function renderHome() {
         <div class="topic-list">
           <h3>Gå til et tema:</h3>
           <ul>
-            ${
-              (window.appData?.topics || [])
-                .map((topic, index) => `
+            ${topics
+              .map((topic, index) => {
+                const done = getUserProgress()?.[topic.id]?.completed;
+                return `
                   <li>
                     <a href="#/tema/${index + 1}" class="topic-link">
-                      Tema ${index + 1}: ${topic.title}
-                      ${getUserProgress()[topic.id]?.completed ? " (Fullført)" : ""}
+                      Tema ${index + 1}: ${topic.title}${done ? " (Fullført)" : ""}
                     </a>
-                  </li>
-                `)
-                .join("")
-            }
+                  </li>`;
+              })
+              .join("")}
           </ul>
         </div>
       </div>
@@ -140,7 +138,6 @@ function renderQuizzes(tasks, topicId) {
     attempts: Array(tasks.length).fill(0),
   };
 
-  // Bygg HTML for én oppgave
   const renderTask = (task, index) => {
     let html = `
       <div class="task-card" data-task-id="${index}">
@@ -411,19 +408,20 @@ function updateProgressBar() {
 }
 
 /* =========================
-   DRAG & DROP
+   DRAG & DROP (match/drop + sortering)
    ========================= */
 function setupDragAndDrop() {
   let draggedItem = null;
 
-  // ====== Eksisterende DnD (match + drop-zoner) ======
+  // Per oppgave-kort
   document.querySelectorAll(".task-card").forEach((card) => {
     const dragItems = card.querySelectorAll('[draggable="true"]');
     const dropZones = card.querySelectorAll("[data-drop-target], .drop-zone");
 
+    // Felles drag for match + drag-og-slipp
     dragItems.forEach((item) => {
       item.addEventListener("dragstart", (e) => {
-        draggedItem = e.target;
+        draggedItem = item;
         e.dataTransfer.setData("text/plain", "dragged-item");
         e.dataTransfer.effectAllowed = "move";
         item.classList.add("dragging");
@@ -434,66 +432,75 @@ function setupDragAndDrop() {
       });
     });
 
+    // Drop-soner (match + drag-og-slipp)
     dropZones.forEach((zone) => {
       zone.addEventListener("dragover", (e) => {
         e.preventDefault();
         e.dataTransfer.dropEffect = "move";
+        zone.classList.add("drop-target");
+      });
+      zone.addEventListener("dragleave", () => {
+        zone.classList.remove("drop-target");
       });
       zone.addEventListener("drop", (e) => {
         e.preventDefault();
+        zone.classList.remove("drop-target");
         if (!draggedItem) return;
-        if (
-          e.target.classList.contains("target-item") ||
-          e.target.classList.contains("drop-zone")
-        ) {
-          e.target.appendChild(draggedItem);
+        if (zone.classList.contains("target-item") || zone.classList.contains("drop-zone")) {
+          zone.appendChild(draggedItem);
         }
       });
     });
-list.addEventListener("dragenter", () => list.classList.add("drop-target"));
-list.addEventListener("dragleave", () => list.classList.remove("drop-target"));
-list.addEventListener("drop", () => list.classList.remove("drop-target"));
-list.addEventListener("dragend", () => list.classList.remove("drop-target"));
 
+    // Sortering innenfor samme UL for "Sorter rekkefølge"
+    card.querySelectorAll(".sortable-list").forEach((list) => {
+      // visuell markering når man drar over lista
+      list.addEventListener("dragenter", () => list.classList.add("drop-target"));
+      list.addEventListener("dragleave", () => list.classList.remove("drop-target"));
+      list.addEventListener("drop", () => list.classList.remove("drop-target"));
+      list.addEventListener("dragend", () => list.classList.remove("drop-target"));
 
-  // ====== Sortering innenfor samme UL for "Sorter rekkefølge" ======
-  document.querySelectorAll(".sortable-list").forEach((list) => {
-    list.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      const afterEl = getDragAfterElement(list, e.clientY);
-      const dragging = list.querySelector(".sortable-item.dragging");
-      if (!dragging) return;
+      // re-order logikk
+      list.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const afterEl = getDragAfterElement(list, e.clientY);
+        const dragging = list.querySelector(".sortable-item.dragging");
+        if (!dragging) return;
 
-      if (!afterEl) {
-        list.appendChild(dragging);
-      } else {
-        list.insertBefore(dragging, afterEl);
-      }
-    });
-
-    list.querySelectorAll(".sortable-item").forEach((item) => {
-      item.addEventListener("dragstart", (e) => {
-        e.dataTransfer.setData("text/plain", "reorder");
-        e.dataTransfer.effectAllowed = "move";
-        item.classList.add("dragging");
+        if (!afterEl) {
+          list.appendChild(dragging);
+        } else {
+          list.insertBefore(dragging, afterEl);
+        }
       });
-      item.addEventListener("dragend", () => {
-        item.classList.remove("dragging");
+
+      // gjør hvert punkt draggable med feedback
+      list.querySelectorAll(".sortable-item").forEach((item) => {
+        item.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("text/plain", "reorder");
+          e.dataTransfer.effectAllowed = "move";
+          item.classList.add("dragging");
+        });
+        item.addEventListener("dragend", () => {
+          item.classList.remove("dragging");
+        });
       });
     });
   });
 }
+
 function getDragAfterElement(container, y) {
   const candidates = [...container.querySelectorAll(".sortable-item:not(.dragging)")];
-  return candidates.reduce((closest, child) => {
-    const box = child.getBoundingClientRect();
-    const offset = y - box.top - box.height / 2;
-    if (offset < 0 && offset > closest.offset) {
-      return { offset, element: child };
-    } else {
-      return closest;
-    }
-  }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
+  return candidates.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY, element: null }
+  ).element;
 }
-
-
