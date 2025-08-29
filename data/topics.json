@@ -25,6 +25,77 @@
     "grammar": [
       "Bruken av 'må', 'kan' og 'skal' for regler og plikter.",
       "Imperativ i instrukser: 'Husk', 'Sjekk', 'Si ifra'."
+    ],
+    "mediaBlocks": [
+      {
+        "type": "poster",
+        "title": "Avfallssortering – plakat",
+        "image": "assets/avfall.jpg",
+        "alt": "Avfallssortering ved Glamox – oversikt over fraksjoner og eksempler",
+        "caption": "Plakat: Slik sorterer vi avfall på arbeidsplassen."
+      },
+      {
+        "type": "icon-grid",
+        "title": "Symboler og forklaringer",
+        "intro": "Her ser du symbolene for avfallsfraksjonene vi bruker på arbeidsplassen. Les forklaringene – disse brukes i oppgavene under.",
+        "items": [
+          {
+            "icon": "assets/restavfall.jpg",
+            "title": "Restavfall",
+            "desc": "Hard plast, skitten plast, buntebånd, gummi, urent papir, glanset papir, kataloger og brosjyrer, våt papp og papir."
+          },
+          {
+            "icon": "assets/pappogkartong.jpg",
+            "title": "Papp og kartong",
+            "desc": "Ren pappemballasje og som ikke er fuktig, pizzaesker."
+          },
+          {
+            "icon": "assets/plastemballasje.jpg",
+            "title": "Plastemballasje",
+            "desc": "Ren myk plastemballasje, myk plastfolie, myke plastbeger og flasker (ikke panteflasker)."
+          },
+          {
+            "icon": "assets/papir.jpg",
+            "title": "Papir",
+            "desc": "Rent ufarget papir, aviser, drikkekartonger."
+          },
+          {
+            "icon": "assets/trevirke.jpg",
+            "title": "Trevirke",
+            "desc": "Trepaller, alt øvrig treverk som ikke er fuktig."
+          },
+          {
+            "icon": "assets/matavfall.jpg",
+            "title": "Matavfall",
+            "desc": "Matrester, kaffegrut, teposer, fruktskall."
+          },
+          {
+            "icon": "assets/elektrisk.jpg",
+            "title": "Elektrisk og elektronisk avfall",
+            "desc": "Elektriske og elektroniske produkt (EE), ledninger, LED-moduler, drivere, reaktorer."
+          },
+          {
+            "icon": "assets/isopor.jpg",
+            "title": "EPS (isopor)",
+            "desc": "Større mengder isopor sorteres i egen beholder utenfor vedlikeholdsavdelingen. Små mengder kastes i restavfall."
+          },
+          {
+            "icon": "assets/batterier.jpg",
+            "title": "Batterier",
+            "desc": "Kastes i egen merket beholder i Østre produksjonshall (sluttmontasje)."
+          },
+          {
+            "icon": "assets/farligavfall.jpg",
+            "title": "Farlig avfall",
+            "desc": "Maling, lakk, lim, olje, støpemasse, fugemasse, tomme spraybokser, tynner, lysstoffrør. Leveres til Vedlikehold."
+          },
+          {
+            "icon": "assets/glassemballasje.jpg",
+            "title": "Glass-emballasje",
+            "desc": "Glass kastes i egen container for glass- og metallemballasje utenfor vedlikehold."
+          }
+        ]
+      }
     ]
   },
   {
@@ -215,4 +286,3 @@
     ]
   }
 ]
-
