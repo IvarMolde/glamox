@@ -31,6 +31,21 @@ export function renderHome() {
       </header>
 
       <div class="content-body">
+      </header>
+
+<div class="video-wrap">
+  <iframe
+    src="https://www.youtube.com/embed/R8ZaRKoWR1s"
+    title="Introduksjonsvideo"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<div class="content-body">
+
         <h3>Din fremdrift</h3>
         <p>Du har fullført ${completedTopics} av ${totalTopics} temaer.</p>
 
@@ -525,3 +540,4 @@ function getDragAfterElement(container, y) {
     { offset: Number.NEGATIVE_INFINITY, element: null }
   ).element;
 }
+
