@@ -508,5 +508,23 @@ main {
   border-radius: 12px;
   padding: 6px;
 }
+/* === Dra & slipp styling === */
+
+/* Når et element dras */
+.dragging {
+  opacity: 0.7;
+  background-color: #f0f8ff; /* lys blå */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: 2px dashed #0077cc;
+  border-radius: 6px;
+}
+
+/* Drop-soner / lister som kan ta imot element */
+.drop-target {
+  background-color: #e6f7ff; /* svakt blå felt */
+  outline: 2px dashed #0077cc;
+  border-radius: 6px;
+}
+
 
 
