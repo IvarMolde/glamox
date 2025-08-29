@@ -416,6 +416,7 @@ function updateProgressBar() {
 function setupDragAndDrop() {
   let draggedItem = null;
 
+  // ====== Eksisterende DnD (match + drop-zoner) ======
   document.querySelectorAll(".task-card").forEach((card) => {
     const dragItems = card.querySelectorAll('[draggable="true"]');
     const dropZones = card.querySelectorAll("[data-drop-target], .drop-zone");
@@ -425,9 +426,11 @@ function setupDragAndDrop() {
         draggedItem = e.target;
         e.dataTransfer.setData("text/plain", "dragged-item");
         e.dataTransfer.effectAllowed = "move";
+        item.classList.add("dragging");
       });
       item.addEventListener("dragend", () => {
         draggedItem = null;
+        item.classList.remove("dragging");
       });
     });
 
@@ -448,5 +451,31 @@ function setupDragAndDrop() {
       });
     });
   });
-}
 
+  // ====== Sortering innenfor samme UL for "Sorter rekkefølge" ======
+  document.querySelectorAll(".sortable-list").forEach((list) => {
+    list.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const afterEl = getDragAfterElement(list, e.clientY);
+      const dragging = list.querySelector(".sortable-item.dragging");
+      if (!dragging) return;
+
+      if (!afterEl) {
+        list.appendChild(dragging);
+      } else {
+        list.insertBefore(dragging, afterEl);
+      }
+    });
+
+    list.querySelectorAll(".sortable-item").forEach((item) => {
+      item.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", "reorder");
+        e.dataTransfer.effectAllowed = "move";
+        item.classList.add("dragging");
+      });
+      item.addEventListener("dragend", () => {
+        item.classList.remove("dragging");
+      });
+    });
+  });
+}
