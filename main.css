@@ -474,3 +474,5 @@ main {
     max-width: 1120px;
   }
 }
+.sortable-item.dragging { opacity: .7; }
+
