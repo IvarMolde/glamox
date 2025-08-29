@@ -374,6 +374,22 @@ main {
   main { padding: 0; margin: 0; }
   .content-area { box-shadow: none; padding: 0; border: none; }
 }
+/* --- Hjem-video --- */
+.video-wrap {
+  margin: 1rem 0 2rem;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.video-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 
 
 
