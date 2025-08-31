@@ -31,20 +31,16 @@ export function renderHome() {
       </header>
 
       <div class="content-body">
-      </header>
-
-<div class="video-wrap">
-  <iframe
-    src="https://www.youtube.com/embed/R8ZaRKoWR1s"
-    title="Introduksjonsvideo"
-    loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-  ></iframe>
-</div>
-
-<div class="content-body">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/R8ZaRKoWR1s"
+            title="Introduksjonsvideo"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
 
         <h3>Din fremdrift</h3>
         <p>Du har fullført ${completedTopics} av ${totalTopics} temaer.</p>
@@ -58,17 +54,15 @@ export function renderHome() {
         <div class="topic-list">
           <h3>Gå til et tema:</h3>
           <ul>
-            ${topics
-              .map((topic, index) => {
-                const done = getUserProgress()?.[topic.id]?.completed;
-                return `
-                  <li>
-                    <a href="#/tema/${index + 1}" class="topic-link">
-                      Tema ${index + 1}: ${topic.title}${done ? " (Fullført)" : ""}
-                    </a>
-                  </li>`;
-              })
-              .join("")}
+            ${topics.map((topic, index) => {
+              const done = getUserProgress()?.[topic.id]?.completed;
+              return `
+                <li>
+                  <a href="#/tema/${index + 1}" class="topic-link">
+                    Tema ${index + 1}: ${topic.title}${done ? " (Fullført)" : ""}
+                  </a>
+                </li>`;
+            }).join("")}
           </ul>
         </div>
       </div>
@@ -548,6 +542,7 @@ function getDragAfterElement(container, y) {
     { offset: Number.NEGATIVE_INFINITY, element: null }
   ).element;
 }
+
 
 
 
