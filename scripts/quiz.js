@@ -80,23 +80,27 @@ export function renderHome() {
    TEMA (TEKST + OPPGAVER)
    ========================= */
 export function renderTopicPage(topicId) {
-  const view = el("content-view");
-  const vocabPanel = el("vocab-panel");
-  const vocabContent = el("vocab-content");
+  const view = document.getElementById("content-view");
+  const vocabPanel = document.getElementById("vocab-panel");
+  const vocabContent = document.getElementById("vocab-content");
   if (!view) return;
 
-  const topicIndex = parseInt(topicId, 10) - 1;
-  const topic = window.appData?.topics?.[topicIndex];
-  const quizzes = (window.appData?.quizzes || []).find(
-    (q) => String(q.topicId) === String(topic?.id)
-  );
+  // 1) Finn tema via index i URL (1-basert -> 0-basert)
+  const idx = Number.parseInt(topicId, 10) - 1;
+  const topics = Array.isArray(window.appData?.topics) ? window.appData.topics : [];
+  const quizzes = Array.isArray(window.appData?.quizzes) ? window.appData.quizzes : [];
+  const topic = topics[idx];
 
-  if (!topic || !quizzes) {
+  if (!topic) {
     view.innerHTML = `<div class="content-area"><p>Temaet ble ikke funnet.</p></div>`;
     if (vocabPanel) vocabPanel.hidden = true;
     return;
   }
 
+  // 2) Finn quiz som matcher temaets ID (begge som streng)
+  const quiz = quizzes.find(q => String(q.topicId) === String(topic.id));
+
+  // 3) Render tema-innhold
   view.innerHTML = `
     <div class="content-area topic-page">
       <header class="content-header">
@@ -109,36 +113,40 @@ export function renderTopicPage(topicId) {
         <p>${topic.text}</p>
 
         <div class="dialogue">
-          ${topic.dialogues.map((d) => `<p><strong>${d.speaker}</strong>: ${d.text}</p>`).join("")}
+          ${topic.dialogues.map(d => `<p><strong>${d.speaker}</strong>: ${d.text}</p>`).join("")}
         </div>
 
         <h3>Grammatikkfokus</h3>
-        <ul>
-          ${topic.grammar.map((g) => `<li>${g}</li>`).join("")}
-        </ul>
+        <ul>${topic.grammar.map(g => `<li>${g}</li>`).join("")}</ul>
       </div>
 
       <div id="quiz-container" class="quiz-container">
         <h3>Oppgaver</h3>
-        <p>Fullfør alle oppgavene for å fullføre temaet.</p>
-        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-          <div id="quiz-progress" class="progress" style="width:0%"></div>
-        </div>
+        ${quiz
+          ? `<p>Fullfør alle oppgavene for å fullføre temaet.</p>
+             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+               <div id="quiz-progress" class="progress" style="width:0%"></div>
+             </div>`
+          : `<p>Ingen oppgaver er lagt inn for dette temaet ennå.</p>`}
       </div>
     </div>
   `;
 
-  if (vocabContent && vocabPanel) {
+  // 4) Ordliste-panelet for temaet
+  if (vocabPanel && vocabContent) {
     vocabContent.innerHTML = `
       <ul class="word-list">
-        ${topic.vocabulary.map((v) => `<li><strong>${v.word}</strong>: ${v.explanation}</li>`).join("")}
-      </ul>
-    `;
+        ${topic.vocabulary.map(v => `<li><strong>${v.word}</strong>: ${v.explanation}</li>`).join("")}
+      </ul>`;
     vocabPanel.hidden = false;
   }
 
-  renderQuizzes(quizzes.tasks, topic.id);
+  // 5) Render quizene (om de finnes)
+  if (quiz && Array.isArray(quiz.tasks)) {
+    renderQuizzes(quiz.tasks, String(topic.id));
+  }
 }
+
 
 /* =========================
    OPPGAVE-RENDERER + LOGIKK
@@ -540,5 +548,6 @@ function getDragAfterElement(container, y) {
     { offset: Number.NEGATIVE_INFINITY, element: null }
   ).element;
 }
+
 
 
