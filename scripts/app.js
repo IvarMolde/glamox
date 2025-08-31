@@ -9,6 +9,9 @@ async function initializeApp() {
   let quizzes = [];
   try {
     [topics, quizzes] = await Promise.all([loadTopics(), loadQuizzes()]);
+    // Debug: se at data faktisk kommer inn
+    console.log("[DEBUG] topics loaded:", topics);
+    console.log("[DEBUG] quizzes loaded:", quizzes);
   } catch (err) {
     console.error("Feil ved lasting av data:", err);
   }
@@ -30,7 +33,9 @@ async function initializeApp() {
   setupA11y();
 
   // 4) Start router ETTER at data er klare
-  setupRouter(() => handleRouteChange());
+  setupRouter(handleRouteChange);
+
+  // 5) Initial rute
   handleRouteChange();
 }
 
