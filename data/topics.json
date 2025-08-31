@@ -4,19 +4,21 @@
     "title": "HMS og verneutstyr",
     "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><path d=\"M12 2L2 7V17L12 22L22 17V7L12 2Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 16L12 12V8\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 8H12.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
     "hero": {
-  "src": "assets/avfall.jpg",
-  "alt": "Plakater om kildesortering og avfallssymboler på veggen."
-},
-"symbols": [
-  { "src": "assets/papir.png",      "label": "Papir",      "description": "Papir og papp kastes her." },
-  { "src": "assets/metall.png",     "label": "Metall",     "description": "Bokser, aluminiumsfolie m.m." },
-  { "src": "assets/glass.png",      "label": "Glass",      "description": "Glass og flasker uten pant." },
-  { "src": "assets/hvitplast.png",  "label": "Plast",      "description": "Ren plastemballasje." },
-  { "src": "assets/matavfall.png",  "label": "Matavfall",  "description": "Matrester og biologisk avfall." },
-  { "src": "assets/restavfall.png", "label": "Restavfall", "description": "Det som ikke kan sorteres." },
-  { "src": "assets/ee-avfall.png",  "label": "EE-avfall",  "description": "Elektrisk/elektronisk avfall." },
-  { "src": "assets/batteri.png",    "label": "Batteri",    "description": "Brukte batterier leveres her." }
-]
+      "src": "assets/avfall.jpg",
+      "alt": "Plakater om kildesortering og avfallssymboler på veggen."
+    },
+    "symbols": [
+      { "src": "assets/restavfall.jpg",       "label": "Restavfall",       "description": "Det som ikke kan sorteres." },
+      { "src": "assets/pappogkartong.jpg",    "label": "Papp og kartong",  "description": "Ren pappemballasje som ikke er fuktig." },
+      { "src": "assets/plastemballasje.jpg",  "label": "Plastemballasje",  "description": "Ren myk plastemballasje og myk plastfolie." },
+      { "src": "assets/papir.jpg",            "label": "Papir",            "description": "Rent ufarget papir, aviser, drikkekartonger." },
+      { "src": "assets/trevirke.jpg",         "label": "Trevirke",         "description": "Trepaller, annet tørt treverk." },
+      { "src": "assets/matavfall.jpg",        "label": "Matavfall",        "description": "Matrester, kaffegrut, teposer, fruktskall." },
+      { "src": "assets/isopor.jpg",           "label": "EPS (isopor)",     "description": "Store mengder i egen beholder. Små mengder i restavfall." },
+      { "src": "assets/batterier.jpg",        "label": "Batterier",        "description": "I egen merket beholder i Østre produksjonshall." },
+      { "src": "assets/farligavfall.jpg",     "label": "Farlig avfall",    "description": "Maling, lakk, lim, olje m.m. – leveres til Vedlikehold." },
+      { "src": "assets/glassemballasje.jpg",  "label": "Glass-emballasje", "description": "Egen container for glass- og metallemballasje." }
+    ],
     "text": "På fabrikken er sikkerhet det viktigste. Vi passer på oss selv og kollegaene våre. Alle som jobber her, må alltid bruke verneutstyr. Det betyr hjelm, vernesko og vernebriller. Noen ganger må vi også bruke hørselvern. Før du starter jobben, må du sjekke at utstyret er i orden. Hvis du ser noe som ikke er trygt, må du si ifra til lederen din med en gang. Dette kaller vi et avvik. Hvis nesten noe dårlig skjedde, er det en nestenulykke. Vi må melde fra om alle nestenulykker. Det er viktig. Vi skal lære av feil for å unngå ulykker. Arbeidsplassen skal være trygg for alle.",
     "vocabulary": [
       { "word": "HMS", "explanation": "Helse, miljø og sikkerhet. Regler for å jobbe trygt." },
@@ -53,61 +55,16 @@
         "title": "Symboler og forklaringer",
         "intro": "Her ser du symbolene for avfallsfraksjonene vi bruker på arbeidsplassen. Les forklaringene – disse brukes i oppgavene under.",
         "items": [
-          {
-            "icon": "assets/restavfall.jpg",
-            "title": "Restavfall",
-            "desc": "Hard plast, skitten plast, buntebånd, gummi, urent papir, glanset papir, kataloger og brosjyrer, våt papp og papir."
-          },
-          {
-            "icon": "assets/pappogkartong.jpg",
-            "title": "Papp og kartong",
-            "desc": "Ren pappemballasje og som ikke er fuktig, pizzaesker."
-          },
-          {
-            "icon": "assets/plastemballasje.jpg",
-            "title": "Plastemballasje",
-            "desc": "Ren myk plastemballasje, myk plastfolie, myke plastbeger og flasker (ikke panteflasker)."
-          },
-          {
-            "icon": "assets/papir.jpg",
-            "title": "Papir",
-            "desc": "Rent ufarget papir, aviser, drikkekartonger."
-          },
-          {
-            "icon": "assets/trevirke.jpg",
-            "title": "Trevirke",
-            "desc": "Trepaller, alt øvrig treverk som ikke er fuktig."
-          },
-          {
-            "icon": "assets/matavfall.jpg",
-            "title": "Matavfall",
-            "desc": "Matrester, kaffegrut, teposer, fruktskall."
-          },
-          {
-            "icon": "assets/elektrisk.jpg",
-            "title": "Elektrisk og elektronisk avfall",
-            "desc": "Elektriske og elektroniske produkt (EE), ledninger, LED-moduler, drivere, reaktorer."
-          },
-          {
-            "icon": "assets/isopor.jpg",
-            "title": "EPS (isopor)",
-            "desc": "Større mengder isopor sorteres i egen beholder utenfor vedlikeholdsavdelingen. Små mengder kastes i restavfall."
-          },
-          {
-            "icon": "assets/batterier.jpg",
-            "title": "Batterier",
-            "desc": "Kastes i egen merket beholder i Østre produksjonshall (sluttmontasje)."
-          },
-          {
-            "icon": "assets/farligavfall.jpg",
-            "title": "Farlig avfall",
-            "desc": "Maling, lakk, lim, olje, støpemasse, fugemasse, tomme spraybokser, tynner, lysstoffrør. Leveres til Vedlikehold."
-          },
-          {
-            "icon": "assets/glassemballasje.jpg",
-            "title": "Glass-emballasje",
-            "desc": "Glass kastes i egen container for glass- og metallemballasje utenfor vedlikehold."
-          }
+          { "icon": "assets/restavfall.jpg",       "title": "Restavfall",       "desc": "Hard plast, skitten plast, buntebånd, gummi, urent papir, glanset papir, kataloger/brosjyrer, våt papp/papir." },
+          { "icon": "assets/pappogkartong.jpg",    "title": "Papp og kartong",  "desc": "Ren pappemballasje som ikke er fuktig (f.eks. pizzaesker)." },
+          { "icon": "assets/plastemballasje.jpg",  "title": "Plastemballasje",  "desc": "Ren myk plastemballasje, myk plastfolie, myke plastbeger og flasker (ikke pant)." },
+          { "icon": "assets/papir.jpg",            "title": "Papir",            "desc": "Rent ufarget papir, aviser, drikkekartonger." },
+          { "icon": "assets/trevirke.jpg",         "title": "Trevirke",         "desc": "Trepaller, alt øvrig treverk som ikke er fuktig." },
+          { "icon": "assets/matavfall.jpg",        "title": "Matavfall",        "desc": "Matrester, kaffegrut, teposer, fruktskall." },
+          { "icon": "assets/isopor.jpg",           "title": "EPS (isopor)",     "desc": "Større mengder sorteres i egen beholder. Små mengder i restavfall." },
+          { "icon": "assets/batterier.jpg",        "title": "Batterier",        "desc": "Egen merket beholder i Østre produksjonshall (sluttmontasje)." },
+          { "icon": "assets/farligavfall.jpg",     "title": "Farlig avfall",    "desc": "Maling, lakk, lim, olje, støpemasse, fugemasse, spraybokser, tynner, lysstoffrør – leveres til Vedlikehold." },
+          { "icon": "assets/glassemballasje.jpg",  "title": "Glass-emballasje", "desc": "Kastes i container for glass- og metallemballasje utenfor vedlikehold." }
         ]
       }
     ]
