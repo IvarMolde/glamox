@@ -1,31 +1,24 @@
-/**
- * Loads the topic data from the JSON file.
- */
+// scripts/data.js
+async function fetchJSON(url) {
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Kunne ikke hente ${url} (HTTP ${res.status})`);
+  return res.json();
+}
+
 export async function loadTopics() {
   try {
-    const response = await fetch("./data/topics.json");
-    if (!response.ok) {
-      throw new Error("Could not load topics.json");
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(error);
+    return await fetchJSON("data/topics.json");
+  } catch (err) {
+    console.error(err);
     return [];
   }
 }
 
-/**
- * Loads the quiz data from the JSON file.
- */
 export async function loadQuizzes() {
   try {
-    const response = await fetch("./data/quizzes.json");
-    if (!response.ok) {
-      throw new Error("Could not load quizzes.json");
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(error);
+    return await fetchJSON("data/quizzes.json");
+  } catch (err) {
+    console.error(err);
     return [];
   }
 }
