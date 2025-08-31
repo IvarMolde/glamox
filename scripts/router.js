@@ -3,33 +3,28 @@ import { renderHome, renderTopicPage } from "./quiz.js";
 
 // Definer ruter
 const routes = {
-  "": () => renderHome(),           // "#/" eller tom hash
+  "": () => renderHome(),              // "#/" eller tom hash
   "tema": (id) => renderTopicPage(id), // "#/tema/1"
 };
 
 export function handleRouteChange() {
-  // Eksempel: "#/tema/1"
+  // Eksempel hash: "#/tema/1"
   const raw = window.location.hash || "#/";
-  // Fjern "#", fjern ledende "/", og splitt
-  const cleaned = raw.slice(1).replace(/^\/+/, "");   // "tema/1" eller ""
-  const [path, param] = cleaned.split("/");           // path="tema", param="1"
+  const cleaned = raw.slice(1).replace(/^\/+/, ""); // "tema/1" eller ""
+  const [path, param] = cleaned.split("/");
 
-  // Finn matching rute
   if (Object.prototype.hasOwnProperty.call(routes, path)) {
     routes[path](param);
-  } else if (path === "" || typeof path === "undefined") {
+  } else if (!path) {
     routes[""]();
   } else {
-    // ukjent rute -> hjem
     routes[""]();
   }
 
-  // Marker aktiv lenke i toppmenyen
   updateActiveLink("#/" + cleaned);
 }
 
 export function setupRouter(routeHandler) {
-  // Kjør på hash-endring og første last
   window.addEventListener("hashchange", routeHandler);
 }
 
