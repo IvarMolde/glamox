@@ -389,6 +389,81 @@ main {
   height: 100%;
   border: 0;
 }
+
+/* --- Media blocks (poster, icon-grid) --- */
+.media-block {
+  margin: 1.5rem 0;
+}
+
+.hero-image {
+  margin: 1.5rem 0;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.poster-block img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.poster-block p em {
+  color: var(--color-text-secondary);
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.icon-item {
+  background: var(--color-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.icon-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.icon-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.icon-item h4 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+
+.icon-item p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .icon-item img {
+    height: 100px;
+  }
+}
 /* === Logo-tilpasning === */
 .brand-logo {
   height: 40px;         /* standard høyde */
@@ -402,23 +477,6 @@ main {
     height: 32px;       /* litt mindre på mobil */
     max-height: 36px;
   }
-}
-
-.video-wrap {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  margin: 1rem 0 2rem;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px var(--color-shadow);
-  background: #000;
-}
-.video-wrap iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
 }
 
 
