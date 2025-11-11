@@ -4,65 +4,65 @@
     "tasks": [
       {
         "type": "Leseforståelse",
-        "question": "Hva er det viktigste på fabrikken ifølge teksten?",
+        "question": "Hvorfor er avfallssortering viktig ifølge teksten?",
         "options": [
-          { "text": "Å jobbe fort", "value": "a", "isCorrect": false },
-          { "text": "Sikkerhet for alle", "value": "b", "isCorrect": true },
-          { "text": "Å bruke minst mulig verktøy", "value": "c", "isCorrect": false }
+          { "text": "For å jobbe raskere", "value": "a", "isCorrect": false },
+          { "text": "For miljøet og gjenvinning", "value": "b", "isCorrect": true },
+          { "text": "For å spare penger", "value": "c", "isCorrect": false }
         ]
       },
       {
         "type": "Match begrep-forklaring",
-        "question": "Koble HMS-begrepene til riktig forklaring.",
+        "question": "Koble avfallstyper til riktig forklaring.",
         "terms": [
-          { "id": "1", "text": "Avvik" },
-          { "id": "2", "text": "Nestenulykke" },
-          { "id": "3", "text": "Vernebriller" },
-          { "id": "4", "text": "Vernesko" },
-          { "id": "5", "text": "Varsle" }
+          { "id": "1", "text": "Restavfall" },
+          { "id": "2", "text": "Plastemballasje" },
+          { "id": "3", "text": "Matavfall" },
+          { "id": "4", "text": "Farlig avfall" },
+          { "id": "5", "text": "Gjenvinning" }
         ],
         "explanations": [
-          { "id": "1", "text": "Noe som ikke er etter reglene" },
-          { "id": "2", "text": "Når en ulykke nesten skjedde" },
-          { "id": "3", "text": "Beskytter øynene" },
-          { "id": "4", "text": "Beskytter føttene" },
-          { "id": "5", "text": "Si ifra til leder" }
+          { "id": "1", "text": "Avfall som ikke kan sorteres i andre kategorier" },
+          { "id": "2", "text": "Ren myk plastemballasje og plastfolie" },
+          { "id": "3", "text": "Matrester, kaffegrut og fruktskall" },
+          { "id": "4", "text": "Maling, lakk, lim og olje" },
+          { "id": "5", "text": "Å bruke materialer på nytt" }
         ]
       },
       {
         "type": "Sorter rekkefølge",
-        "question": "Sett i riktig rekkefølge før du starter jobben:",
+        "question": "Sett i riktig rekkefølge når du skal sortere avfall:",
         "items": [
-          { "id": "1", "text": "Ta på verneutstyr." },
-          { "id": "2", "text": "Sjekk at utstyret er i orden." },
-          { "id": "3", "text": "Gå til arbeidsplassen." },
-          { "id": "4", "text": "Les instruksjonen." },
-          { "id": "5", "text": "Start jobben." }
+          { "id": "1", "text": "Se på avfallet." },
+          { "id": "2", "text": "Sjekk om det er rent og tørt." },
+          { "id": "3", "text": "Finn riktig beholder." },
+          { "id": "4", "text": "Kast avfallet i riktig beholder." },
+          { "id": "5", "text": "Spør hvis du er usikker." }
         ],
         "correctOrder": [
-          { "id": "1", "text": "Ta på verneutstyr." },
-          { "id": "2", "text": "Sjekk at utstyret er i orden." },
-          { "id": "4", "text": "Les instruksjonen." },
-          { "id": "3", "text": "Gå til arbeidsplassen." },
-          { "id": "5", "text": "Start jobben." }
+          { "id": "1", "text": "Se på avfallet." },
+          { "id": "2", "text": "Sjekk om det er rent og tørt." },
+          { "id": "3", "text": "Finn riktig beholder." },
+          { "id": "5", "text": "Spør hvis du er usikker." },
+          { "id": "4", "text": "Kast avfallet i riktig beholder." }
         ]
       },
       {
         "type": "Fyll-inn-tomrom",
         "question": "Fyll inn de riktige ordene fra ordlisten.",
-        "sentence": "Hvis du ser en løs kabel, må du [_] til lederen din. Dette er en [_].",
-        "correctAnswers": ["varsle", "nestenulykke"],
-        "wordBank": ["varsle", "nestenulykke", "verktøy", "avvik", "hjelm"]
+        "sentence": "Papp og kartong skal være [_] og [_]. Hvis du er usikker, kan du [_] en kollega.",
+        "correctAnswers": ["rene", "tørre", "spørre"],
+        "wordBank": ["rene", "tørre", "spørre", "fuktig", "skitten"]
       },
       {
         "type": "Dra-og-slipp",
-        "question": "Sorter riktige og feil HMS-rutiner.",
+        "question": "Sorter riktige og feil avfallssorteringsrutiner.",
         "items": [
-          { "text": "Bruke vernebriller ved skjæring", "isCorrect": true },
-          { "text": "La kabler ligge løst på gulvet", "isCorrect": false },
-          { "text": "Rapportere nestenulykker", "isCorrect": true },
-          { "text": "Jobbe uten vernesko", "isCorrect": false },
-          { "text": "Sjekke utstyret før bruk", "isCorrect": true }
+          { "text": "Sjekke om papp er ren og tørr før sortering", "isCorrect": true },
+          { "text": "Kaste farlig avfall i restavfall", "isCorrect": false },
+          { "text": "Spørre kollega hvis usikker", "isCorrect": true },
+          { "text": "Kaste batterier i restavfall", "isCorrect": false },
+          { "text": "Bruke riktig beholder for hver type", "isCorrect": true }
         ]
       }
     ]
