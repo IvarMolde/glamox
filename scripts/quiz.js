@@ -19,6 +19,50 @@ export function renderHome() {
   const totalTopics = topics.length;
   const progress = getUserProgress();
   const completedTopics = Object.values(progress || {}).filter((t) => t?.completed).length;
+  const progressPercent = pct(completedTopics, totalTopics);
+
+  const splashLinks = [
+    {
+      title: "Energieffektive løsninger",
+      description:
+        "Utforsk hvordan Glamox reduserer energiforbruket gjennom lysstyring, sensorer og rådgivning.",
+      href: "https://www.glamox.com/no/pbs/energibesparelse/",
+      cta: "Se energitiltakene",
+    },
+    {
+      title: "Bærekraft i fokus",
+      description:
+        "Les om satsningen vår på miljø, ansvarlige materialvalg og sirkulær økonomi i produksjonen.",
+      href: "https://www.glamox.com/no/pbs/baerekraft/",
+      cta: "Les om bærekraft",
+    },
+    {
+      title: "Ressurssenter",
+      description:
+        "Finn guider, webinarer og referanser som holder deg oppdatert på fag og produkter.",
+      href: "https://www.glamox.com/no/pbs/kunnskapssenter/",
+      cta: "Åpne ressurssenteret",
+    },
+  ];
+
+  const splashMarkup = splashLinks
+    .map(
+      (card) => `
+        <article class="highlight-card">
+          <h4>${card.title}</h4>
+          <p>${card.description}</p>
+          <a
+            href="${card.href}"
+            class="button-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ${card.cta}
+          </a>
+        </article>
+      `
+    )
+    .join("");
 
   view.innerHTML = `
     <div class="content-area home-page">
@@ -26,45 +70,80 @@ export function renderHome() {
         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2L15 6L22 7L17 12L18 19L12 16L6 19L7 12L2 7L9 6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <h2>Velkommen til "Norsk på jobben"!</h2>
-        <p>Her kan du lære norsk som du kan bruke på jobben hver dag.</p>
+          <h2>Glamox Professional Building Solutions</h2>
+          <p>Profesjonelle belysningsløsninger for næringsbygg.</p>
       </header>
 
       <div class="content-body">
-        <div class="video-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/R8ZaRKoWR1s"
-            title="Introduksjonsvideo"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
+          <section class="intro">
+            <p>
+              Glamox utvikler, produserer og leverer profesjonelle belysningsløsninger som
+              forbedrer ytelse og trivsel i næringsbygg. Denne læringsressursen gir nye og
+              erfarne medarbeidere et praktisk innblikk i prosessene, sikkerheten og
+              kvalitetskravene i fabrikkene våre.
+            </p>
+            <p>
+              Arbeid gjennom temaene for å styrke fagspråk, rutiner og samarbeid på tvers av
+              linjene. Hver modul er koblet til konkrete arbeidsoppgaver i produksjonen.
+            </p>
+            <div class="video-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/R8ZaRKoWR1s"
+                title="Introduksjonsvideo"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </section>
 
-        <h3>Din fremdrift</h3>
-        <p>Du har fullført ${completedTopics} av ${totalTopics} temaer.</p>
+          <section class="brand-highlights" aria-label="Utforsk Glamox sine satsingsområder">
+            <h3>Utforsk Glamox</h3>
+            <div class="highlight-grid">
+              ${splashMarkup}
+            </div>
+          </section>
 
-        <div class="progress-bar" role="progressbar"
-             aria-valuenow="${pct(completedTopics, totalTopics)}"
-             aria-valuemin="0" aria-valuemax="100">
-          <div class="progress" style="width:${pct(completedTopics, totalTopics)}%"></div>
-        </div>
+          <section class="progress-section" aria-label="Din fremdrift">
+            <h3>Din fremdrift</h3>
+            <p>Du har fullført ${completedTopics} av ${totalTopics} temaer.</p>
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuenow="${progressPercent}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div class="progress" style="width:${progressPercent}%"></div>
+            </div>
+          </section>
 
-        <div class="topic-list">
-          <h3>Gå til et tema:</h3>
-          <ul>
-            ${topics.map((topic, index) => {
-              const done = getUserProgress()?.[topic.id]?.completed;
-              return `
-                <li>
-                  <a href="#/tema/${index + 1}" class="topic-link">
-                    Tema ${index + 1}: ${topic.title}${done ? " (Fullført)" : ""}
-                  </a>
-                </li>`;
-            }).join("")}
-          </ul>
-        </div>
+          <section class="topic-list">
+            <h3>Start på et tema</h3>
+            <ul>
+              ${
+                topics.length
+                    ? topics
+                        .map((topic, index) => {
+                          const routeIndex = index + 1;
+                          const topicId = String(topic?.id ?? routeIndex);
+                          const done = progress?.[topicId]?.completed;
+                          return `
+                            <li>
+                              <a href="#/tema/${routeIndex}" class="topic-link">
+                                <span class="topic-link__title">Tema ${topicId}</span>
+                                <span class="topic-link__name">${topic.title}</span>
+                                ${done ? '<span class="topic-link__status">Fullført</span>' : ""}
+                              </a>
+                            </li>
+                          `;
+                        })
+                        .join("")
+                  : '<li class="topic-link__empty">Ingen tema er publisert ennå.</li>'
+              }
+            </ul>
+          </section>
       </div>
     </div>
   `;

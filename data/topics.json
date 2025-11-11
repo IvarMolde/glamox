@@ -4,8 +4,8 @@
     "title": "Avfallssortering",
     "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><path d=\"M12 2L2 7V17L12 22L22 17V7L12 2Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 16L12 12V8\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 8H12.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
     "hero": {
-      "src": "assets/avfall.jpg",
-      "alt": "Plakater om kildesortering og avfallssymboler på veggen."
+      "src": "assets/restavfall.jpg",
+      "alt": "Container for restavfall med tydelig merking."
     },
     "symbols": [
       { "src": "assets/restavfall.jpg",       "label": "Restavfall",       "description": "Det som ikke kan sorteres." },
@@ -46,8 +46,8 @@
       {
         "type": "poster",
         "title": "Avfallssortering – plakat",
-        "image": "assets/avfall.jpg",
-        "alt": "Avfallssortering ved Glamox – oversikt over fraksjoner og eksempler",
+        "image": "assets/restavfall.jpg",
+        "alt": "Container for restavfall og resirkulering ved Glamox",
         "caption": "Plakat: Slik sorterer vi avfall på arbeidsplassen."
       },
       {
