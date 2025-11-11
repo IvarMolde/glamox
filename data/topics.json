@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "title": "HMS og verneutstyr",
+    "title": "Avfallssortering",
     "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><path d=\"M12 2L2 7V17L12 22L22 17V7L12 2Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 16L12 12V8\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 8H12.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
     "hero": {
       "src": "assets/avfall.jpg",
@@ -19,28 +19,28 @@
       { "src": "assets/farligavfall.jpg",     "label": "Farlig avfall",    "description": "Maling, lakk, lim, olje m.m. – leveres til Vedlikehold." },
       { "src": "assets/glassemballasje.jpg",  "label": "Glass-emballasje", "description": "Egen container for glass- og metallemballasje." }
     ],
-    "text": "På fabrikken er sikkerhet det viktigste. Vi passer på oss selv og kollegaene våre. Alle som jobber her, må alltid bruke verneutstyr. Det betyr hjelm, vernesko og vernebriller. Noen ganger må vi også bruke hørselvern. Før du starter jobben, må du sjekke at utstyret er i orden. Hvis du ser noe som ikke er trygt, må du si ifra til lederen din med en gang. Dette kaller vi et avvik. Hvis nesten noe dårlig skjedde, er det en nestenulykke. Vi må melde fra om alle nestenulykker. Det er viktig. Vi skal lære av feil for å unngå ulykker. Arbeidsplassen skal være trygg for alle.",
+    "text": "På fabrikken må vi sortere avfall riktig. Dette er viktig for miljøet og for at vi skal kunne gjenvinnes materialene. Hver type avfall skal i sin egen beholder. Restavfall er det som ikke kan sorteres. Papp og kartong skal være rene og tørre. Plastemballasje skal være ren myk plast. Papir skal være rent og ufarget. Trevirke er trepaller og annet tørt treverk. Matavfall er matrester, kaffegrut og fruktskall. EPS (isopor) skal i egen beholder hvis det er store mengder. Batterier skal i egen merket beholder. Farlig avfall som maling og olje skal leveres til Vedlikehold. Glass- og metallemballasje skal i egen container. Hvis du er usikker på hvor noe skal, kan du spørre en kollega eller leder.",
     "vocabulary": [
-      { "word": "HMS", "explanation": "Helse, miljø og sikkerhet. Regler for å jobbe trygt." },
-      { "word": "Verneutstyr", "explanation": "Utstyr som beskytter deg, for eksempel hjelm, hansker og briller." },
-      { "word": "Hjelm", "explanation": "Beskyttelse for hodet." },
-      { "word": "Vernebriller", "explanation": "Briller som beskytter øynene dine." },
-      { "word": "Vernesko", "explanation": "Sko som beskytter føttene dine." },
-      { "word": "Hansker", "explanation": "Beskytter hendene dine." },
-      { "word": "Avvik", "explanation": "Når noe er feil eller ikke etter reglene." },
-      { "word": "Nestenulykker", "explanation": "Når en ulykke nesten skjedde." },
-      { "word": "Varsle", "explanation": "Å si ifra til en leder om et problem." },
-      { "word": "Sikkerhet", "explanation": "Å være trygg og uten fare." }
+      { "word": "Avfallssortering", "explanation": "Å dele avfall i forskjellige typer for å kunne gjenvinnes." },
+      { "word": "Restavfall", "explanation": "Avfall som ikke kan sorteres i andre kategorier." },
+      { "word": "Papp og kartong", "explanation": "Ren pappemballasje som ikke er fuktig." },
+      { "word": "Plastemballasje", "explanation": "Ren myk plastemballasje og plastfolie." },
+      { "word": "Papir", "explanation": "Rent ufarget papir, aviser og drikkekartonger." },
+      { "word": "Trevirke", "explanation": "Trepaller og annet tørt treverk." },
+      { "word": "Matavfall", "explanation": "Matrester, kaffegrut, teposer og fruktskall." },
+      { "word": "Farlig avfall", "explanation": "Maling, lakk, lim, olje og andre farlige stoffer." },
+      { "word": "Gjenvinning", "explanation": "Å bruke materialer på nytt i stedet for å kaste dem." },
+      { "word": "Beholder", "explanation": "En boks eller container hvor man kaster avfall." }
     ],
     "dialogues": [
-      { "speaker": "Leder", "text": "Husk verneutstyr før du starter." },
-      { "speaker": "Arbeider", "text": "Ja, jeg har hjelm og briller på." },
-      { "speaker": "Arbeider", "text": "Jeg ser en løs kabel her. Skal jeg si ifra til HMS-ansvarlig?" },
-      { "speaker": "Leder", "text": "Ja, du skal varsle med en gang. Takk!" }
+      { "speaker": "Arbeider", "text": "Hvor skal jeg kaste denne pappesken?" },
+      { "speaker": "Kollega", "text": "Hvis den er ren og tørr, skal den i papp og kartong." },
+      { "speaker": "Arbeider", "text": "Jeg har noen batterier. Hvor skal de?" },
+      { "speaker": "Leder", "text": "Batterier skal i egen merket beholder i Østre produksjonshall." }
     ],
     "grammar": [
-      "Bruken av 'må', 'kan' og 'skal' for regler og plikter.",
-      "Imperativ i instrukser: 'Husk', 'Sjekk', 'Si ifra'."
+      "Bruken av 'skal' for regler og instruksjoner.",
+      "Preposisjoner for plassering: 'i', 'på', 'til'."
     ],
     "mediaBlocks": [
       {
