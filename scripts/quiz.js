@@ -71,6 +71,43 @@ export function renderHome() {
 }
 
 /* =========================
+   MEDIA BLOCKS (poster, icon-grid, etc.)
+   ========================= */
+function renderMediaBlocks(blocks) {
+  if (!Array.isArray(blocks) || blocks.length === 0) return "";
+
+  return blocks.map((block) => {
+    switch (block.type) {
+      case "poster":
+        return `
+          <div class="media-block poster-block">
+            <h3>${block.title || ""}</h3>
+            <img src="${block.image}" alt="${block.alt || ""}">
+            ${block.caption ? `<p><em>${block.caption}</em></p>` : ""}
+          </div>`;
+
+      case "icon-grid":
+        return `
+          <div class="media-block icon-grid-block">
+            <h3>${block.title || ""}</h3>
+            ${block.intro ? `<p>${block.intro}</p>` : ""}
+            <div class="icon-grid">
+              ${(block.items || []).map((item) => `
+                <div class="icon-item">
+                  <img src="${item.icon}" alt="${item.title}">
+                  <h4>${item.title}</h4>
+                  <p>${item.desc}</p>
+                </div>`).join("")}
+            </div>
+          </div>`;
+
+      default:
+        return "";
+    }
+  }).join("");
+}
+
+/* =========================
    TEMA (TEKST + OPPGAVER)
    ========================= */
 export function renderTopicPage(topicId) {
@@ -104,7 +141,15 @@ export function renderTopicPage(topicId) {
       </header>
 
       <div class="content-body">
+        ${topic.hero ? `
+          <div class="hero-image">
+            <img src="${topic.hero.src}" alt="${topic.hero.alt}">
+          </div>
+        ` : ""}
+
         <p>${topic.text}</p>
+
+        ${renderMediaBlocks(topic.mediaBlocks || [])}
 
         <div class="dialogue">
           ${topic.dialogues.map(d => `<p><strong>${d.speaker}</strong>: ${d.text}</p>`).join("")}
@@ -240,7 +285,7 @@ function renderQuizzes(tasks, topicId) {
                 .join("")}
             </ul>
             <div class="drop-zone" data-correct-zone="true"><p>Dra de riktige rutinene hit</p></div>
-            <div class="drop-zone" data-correct-zone="false"><p>Dra de feile rutinene hit</p></div>
+            <div class="drop-zone" data-correct-zone="false"><p>Dra de feil rutinene hit</p></div>
           </div>`;
         break;
     }
